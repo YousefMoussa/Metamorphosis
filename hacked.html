@@ -6,38 +6,73 @@
     <title>Metamorphosis</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap" rel="stylesheet">
     <style>
-        header{
-            font-family: 'Montserrat','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: "Montserrat",sans-serif;
+        }
+        body{
+            margin:80px;
+            padding:0;
+            background:url(picture.jpg) center center fixed;
+        }
+        .heading{
+            font-family: 'Outfit','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             padding:20px;
             font-size: 60px;
             text-align: center;
             font-weight:bold ;
+            color:#CAD2C5;
         }
         .header{
             font-family:'Montserrat','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             text-align: center;
+            color:#8CD867;
         }
         .forms{
             text-align: center;
         }
         #searchbar{
+            text-align: center;
             width:650px;
-            height:30px;
+            height:60px;
             border-radius: 15px;
+            border: 2px solid black;
+            padding-left:10px;
         }
         #searchbar::placeholder{
+            text-align: center;
             font-family: 'Montserrat','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-weight: bold;
             color:black;
             opacity:0.66;
+        }
+        #moveimage{
             padding:10px;
+        }
+        .buttons {
+            margin-top:10px;
+            text-align: center;
+        }
+
+        .buttons input {
+            margin-right: 50px; 
+            width: 100px;
+            height:50px;
+            font-weight: bold;
+            border-radius: 100px;
         }
     </style>
 </head>
 <body>
-    <header>Welcome to Interview.io!</header>
+    <div class="main">
+    <h1 class="heading">Welcome to Interview.io!</h1>
     <h3 class="header">Chat, Conquer, Celebrate: Ace Interviews with Your AI Wingman!</h3>
     <br>
     <br>
@@ -47,6 +82,15 @@
         <form action="yousefsfile.py">
         <label for="searchbar"></label>
         <input type="text" name="jobtitle" id="searchbar" placeholder="What role are you applying for? Ex: Accountant, Event Planner, etc.">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="buttons">
+        <input type="submit" value="Enter">
+            <input type="reset" value="Reset">
+        </div>
+    </div>
     </form>
     </div>
 </body>
