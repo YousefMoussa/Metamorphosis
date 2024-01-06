@@ -1,0 +1,55 @@
+import openai
+import requests
+from PDFExtract import *
+import re
+openai.api_key = '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'
+URL = "https://api.openai.com/v1/chat/completions"
+
+
+#this is hardcode, change to user inputted pdf
+pdf='Dhruv_Resume_2_2_1.pdf'
+
+ScrapedPdf= extract_text_from_pdf(pdf,'output.txt')
+listofresume= clean_file(ScrapedPdf)
+occupation=input('Enter occupation: ')
+
+payload = {
+"model": "gpt-3.5-turbo",
+"messages": [{"role": "user", "content": f"My resume formatted as a python list is this '{listofresume}'. I have an interview coming up for a '{occupation}' role. Ask me 5 questions total. The first question should be an easy getting to know the person question. The next two qustions should be based on my resume. The fourth question should be based on the company/role. The last question should be a goofy/bizzare one to test quick thinking and social SKILLS, include nothing but the questions in your output.add a /n after each question"}],
+"temperature" : 1.0,
+"top_p":1.0,
+"n" : 5,
+"stream": False,
+"presence_penalty":0,
+"frequency_penalty":0,
+"max_tokens": 400,
+}
+
+headers = {
+"Content-Type": "application/json",
+"Authorization": f"Bearer {openai.api_key}"
+}
+
+response = requests.post(URL, headers=headers, json=payload, stream=False)
+
+
+if response.status_code == 200:
+    pass
+else:
+    print(f"Error: HTTP {response.status_code} - {response.text}")
+
+response_json = response.json()
+
+    # Access specific fields in the JSON content
+generated_text = response_json['choices'][0]['message']['content']
+
+print(generated_text)
+lines = generated_text.strip().split('\n')
+
+# Create variables for each question
+question_1 = lines[0][3:].strip()
+question_2 = lines[1][3:].strip()
+question_3 = lines[2][3:].strip()
+question_4 = lines[3][3:].strip()
+question_5 = lines[4][3:].strip()
+
