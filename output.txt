@@ -1,0 +1,93 @@
+Last Upda ted on 3r d J anuary 2024Yousef Moussa
+Linkedin/ y ousefmoussa | Github/ Y ousefMoussa
+ymoussa@ualberta.ca | 587 -9 7 4 -0085
+EDUCATION
+UNIVERSITY OF ALBERTA
+BSc in C ompu ter E ng C o-op
+Sept. 2022 - Presen t | E dmon t on, AB
+Expected gr ad Ma y 2027
+Honour R oll
+C um. GP A: 3.9/ 4.0
+COURSEWORK
+Intermediate Programming
+Engineering Analysis &Design
+Engineering Mechanics
+Electrical Circuits •Digital Logic Design
+AWARDS
+•Gold inAPEGA’s Science Olympics
+•Faculty ofEngineering IronStandard
+Entrance Scholarship
+•EIAEntrance Scholarship
+•Hussein A.Super Math Award
+SKILLS
+PROGRAMMING
+C•C++•Python •VHDL
+OpenSSH •Virtual Machines
+SOFTWARE
+Altium •EasyEDA •TinkerCAD
+GitLab/GitHub/Git •Arduino IDE
+MSOffice •LTspice •Webflow
+Vivado •WaveForms
+PROFESSIONAL SKILLS
+Time Managemen t
+Balancing a6-course load, Dean’s
+Research Awards, Robotic Clubs,
+Part-Time Work, andpersonal projects.
+C ommunica tion
+Excellent andRespectful verbal and
+written communication skills
+Teamw ork
+Experienced working inteam
+environments ofvarying sizes
+Leader ship
+Proven leadership inRobotics and
+E-Commerce projects, withproficiency in
+public speaking
+Languages
+Fluent inEnglish, andcancommunicate in
+spoken ArabicEXPERIENCE
+DEAN RESEARCH AWARDS | Rehabilitation Robotics Lab
+Sept 2023 – Presen t |E dmon t on, AB
+•Researched thehistory andimplementation behind various methods ofwheelchair
+cushion pressure mapping.
+•Designed PCBs using Altium software andsoldered components forpressure and
+magnetic sensor circuits, coded inpython onRaspberry-PI.
+REHABILITATION ROBOTICS LAB | Engineering Intern
+Ma y 2023 - A ugus t 2023 | E dmon t on, AB
+•Used C++tocode, anddesigned aPCBforanArduino-controlled force meter used
+inshoulder rehabilitation attheUniversity Hospital.
+•Designed PCBs andsoldered components forobtaining andamplifying acoustic and
+electrical muscle signals withagainof10.
+•Researched, documented, anddesigned PCBs using various software and
+components.
+EXTRACURRICULAR
+AUTONOMOUS ROBOTIC VEHICLE PROJECT | University T eam
+Sept 2023 – Presen t | E dmon t on, AB
+•ARVP isastudent-run clubthatdevelops technologies inthefieldofrobotics. ARVP
+currently focuses onunderwater robotics andattends theinternational RoboSub
+competition annually.
+•Idesigned engraved circuit boards using Altium andco-designed anactuation board
+forcontrolling therobots torpedo’s andmechanical systems.
+HACKATHON | Team Member
+No v 2022 | E dmon t on, AB
+•Inaperiod of24hours myteam of5developed aprogram toprovide students with
+their recommended fieldofstudy anduniversity based ontheir interests andneeds.
+•Iimplemented thelocation choice function which usesuserinput preferences to
+identify andrecommend universities inCanada based ontheir preferred location and
+program.
+•Icoded arecursive main control program thatcombines functions forlocation, cost
+anduniversity program selection, learning from userinput.
+HIGH SCHOOL SCIENCE OLYMPICS TEAM | Team Lead
+Dec 2020 – J un 2022 | E dmon t on, AB
+•Ledmyhighschool science olympic team toachieve goldandsilver inthe
+province-wide competition organized byAPEGA.
+•Gained experience inleadership andteam management from managing the
+development ofanArduino-controlled automated delivery robot.
+PROJECTS
+•Designed circuits utilizing Raspberry-Pi forTemperature, Pressure andMagnetic
+sensing andcoded them inpython.
+•Designing anautonomous, Raspberry-Pi multi-speaker synchronized home audio
+system.
+•Developed aprogram forHuffman style filecompression anddecompression.
+•Designed andconstructed ascale-model amusement parkridewithacustom
+brush-less motor circuit.
