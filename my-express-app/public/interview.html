@@ -65,19 +65,32 @@
 
       .Button {
         margin: 5px;
-        padding: 10px;
+        /*padding: 10px;*/
+        width: 206px;
+        height: 73px;
         font-size: 1em;
-        background-color: #8cd867;
-        color: #fff;
+        text-align: center;
+        background-color: #84a98c;
+        color: #bcd0c0;
         border: none;
-        border-radius: 5px;
+        border-radius: 104px;
         cursor: pointer;
       }
 
-      .ButtonGroup {
+      .startstop,
+      .pauserestart {
         display: flex;
-        margin-top: 20px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
       }
+
+      /*{
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center horizontally
+        margin-top: 20px;
+      }*/
 
       .ButtonGroup button {
         margin-right: 10px;
@@ -91,54 +104,58 @@
       <h4><a href="about.html" class="link">About</a></h4>
     </div>
 
-    <h1>Hallo, Wij zijn Codefield!<span aria-hidden="true"></span></h1>
+    <div class="main">
+      <h1>Hallo, Wij zijn Codefield!<span aria-hidden="true"></span></h1>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function (event) {
-        var dataText = [
-          "Utrecht.",
-          "Full Service.",
-          "Webdevelopment.",
-          "Wij zijn Codefield!",
-        ];
+      <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+          var dataText = [
+            "Utrecht.",
+            "Full Service.",
+            "Webdevelopment.",
+            "Wij zijn Codefield!",
+          ];
 
-        function typeWriter(text, i, fnCallback) {
-          if (i < text.length) {
-            document.querySelector("h1").innerHTML =
-              text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
-            setTimeout(function () {
-              typeWriter(text, i + 1, fnCallback);
-            }, 100);
-          } else if (typeof fnCallback == "function") {
-            setTimeout(fnCallback, 700);
+          function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+              document.querySelector("h1").innerHTML =
+                text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
+              setTimeout(function () {
+                typeWriter(text, i + 1, fnCallback);
+              }, 100);
+            } else if (typeof fnCallback == "function") {
+              setTimeout(fnCallback, 700);
+            }
           }
-        }
 
-        function startTextAnimation(i) {
-          if (typeof dataText[i] == "undefined") {
-            setTimeout(function () {
-              startTextAnimation(0);
-            }, 20000);
+          function startTextAnimation(i) {
+            if (typeof dataText[i] == "undefined") {
+              setTimeout(function () {
+                startTextAnimation(0);
+              }, 20000);
+            }
+            if (i < dataText[i].length) {
+              typeWriter(dataText[i], 0, function () {
+                startTextAnimation(i + 1);
+              });
+            }
           }
-          if (i < dataText[i].length) {
-            typeWriter(dataText[i], 0, function () {
-              startTextAnimation(i + 1);
-            });
-          }
-        }
 
-        startTextAnimation(0);
-      });
-    </script>
-
-    <div class="ButtonGroup">
-      <button class="Button">START</button>
-      <button class="Button">STOP</button>
+          startTextAnimation(0);
+        });
+      </script>
     </div>
 
-    <div class="ButtonGroup">
-      <button class="Button">PAUSE</button>
-      <button class="Button">RESTART</button>
+    <div class="ButtonText">
+      <div class="startstop">
+        <button class="Button">START</button>
+        <button class="Button">STOP</button>
+      </div>
+
+      <div class="pauserestart">
+        <button class="Button">PAUSE</button>
+        <button class="Button">RESTART</button>
+      </div>
     </div>
   </body>
 </html>
