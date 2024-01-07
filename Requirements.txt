@@ -2,3 +2,4 @@ node.js
 npm install express
 npm install multer
 npm install body-parser
+npm install node-fetch
