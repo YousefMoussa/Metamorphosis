@@ -37,6 +37,7 @@ app.post('/upload', upload.single('pdfFile'), (req, res) => {
   console.log(req.file); // Information about the uploaded file
   //res.send('File uploaded successfully');
   res.redirect('/interview.html');
+  //res.redirect('/test.html');
 });
 
 // Handle form submission POST request
