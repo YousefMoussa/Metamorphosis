@@ -50,14 +50,16 @@
             width:650px;
             height:40px;
             border-radius: 15px;
-            border: 2px solid black;
+            border: 2px #8CD867;
             padding-left:10px;
             background: white;
-            transition: background 0.3s ease;
+            filter: blur(12px);
+            transition: background 0.3s ease, filter 0.3s ease;
         }
 
         #searchbar:focus {
             background: rgba(255, 255, 255, 0.8); /* Adjusted transparency on focus */
+            filter: blur(15px)
         }
 
         #searchbar::placeholder{
