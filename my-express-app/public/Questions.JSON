@@ -1,0 +1,23 @@
+{
+  "id": "chatcmpl-8eHDgPhxVSVFhoQyCb1cxiiXhLGlK",
+  "object": "chat.completion",
+  "created": 1704610004,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Sure! Here are the six questions:\n\n1. Can you tell me a little bit about yourself and your interests outside of work? \n2. What specific experiences or projects on your resume do you think make you a strong candidate for this data analyst intern role? \n3. Could you elaborate on the skills and tools you have listed on your resume, particularly in relation to data analysis? \n4. Based on the job description, it mentions developing models and algorithms. Can you provide an example of a project or experience where you have done this? \n5. The job description emphasizes the importance of data-driven decision-making. How have you contributed to this in your previous roles or projects? \n6. If you were a superhero, what would be your superpower and why?\n\nJust to clarify, the '\\n' should be added after each question, like this:\n\n1. Can you tell me a little bit about yourself and your interests outside of work?\n2. What specific experiences or projects on your resume do you think make you a strong candidate for this data analyst intern role?\n3. Could you elaborate on the skills and tools you have listed on your resume, particularly in relation to data analysis?\n4. Based on the job description, it mentions developing models and algorithms. Can you provide an example of a project or experience where you have done this?\n5. The job description emphasizes the importance of data-driven decision-making. How have you contributed to this in your previous roles or projects?\n6. If you were a superhero, what would be your superpower and why?"
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1068,
+    "completion_tokens": 315,
+    "total_tokens": 1383
+  },
+  "system_fingerprint": null
+}
