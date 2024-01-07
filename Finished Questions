@@ -2,20 +2,19 @@ import openai
 import requests
 from PDFExtract import *
 import re
-openai.api_key = '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'
+from DetailsAndRole import *
+openai.api_key = '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'
 URL = "https://api.openai.com/v1/chat/completions"
 
 
 #this is hardcode, change to user inputted pdf
-pdf='Dhruv_Resume_2_2_1.pdf'
-
+pdf='CurrResume.pdf'
 ScrapedPdf= extract_text_from_pdf(pdf,'output.txt')
 listofresume= clean_file(ScrapedPdf)
-occupation=input('Enter occupation: ')
 
 payload = {
 "model": "gpt-3.5-turbo",
-"messages": [{"role": "user", "content": f"My resume formatted as a python list is this '{listofresume}'. I have an interview coming up for a '{occupation}' role. Ask me 5 questions total. The first question should be an easy getting to know the person question. The next two qustions should be based on my resume. The fourth question should be based on the company/role. The last question should be a goofy/bizzare one to test quick thinking and social SKILLS, include nothing but the questions in your output.add a /n after each question"}],
+"messages": [{"role": "user", "content": f"My resume formatted as a python list is this '{listofresume}'. The job I have an interview coming up for a '{Job_Title}' role. The job description for this role is '{Job_Description}'.Ask me 6 questions total. The first question should be an easy getting to know the person question. The next two qustions should be based on my resume. The fourth and fifth question should be based on the company/role and how my resume fits in with the job description. The last question should be a goofy/bizzare one to test quick thinking and social SKILLS, include nothing but the questions in your output.add a /n after each question. Include nothing but the questions"}],
 "temperature" : 1.0,
 "top_p":1.0,
 "n" : 5,
@@ -52,4 +51,5 @@ question_2 = lines[1][3:].strip()
 question_3 = lines[2][3:].strip()
 question_4 = lines[3][3:].strip()
 question_5 = lines[4][3:].strip()
+
 
