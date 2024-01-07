@@ -17,18 +17,14 @@
             font-size: 96px;
             color: #CAD2C5;
         }
-        .score {
-            color: #CAD2C5;
-            text-decoration: none;
-            display: flex;
-            justify-content: space-around;
-        }
         .score-container {
             text-align: center;
             display: flex;
             justify-content: space-around;
         }
         .score-circle {
+            font-family: 'Montserrat','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: #CAD2C5;
             height: 300px;
             width: 300px;
             border: 4px solid #CAD2C5;
@@ -37,15 +33,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
-
-        @keyframes rotateCircular {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
         }
     </style>
 </head>
@@ -67,14 +54,14 @@
     </div>
 
     <script>
-        // Assuming your JSON data is stored in a file named data.json
+        // Fetch JSON data
         fetch('numbers.json')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('score1').innerText = `Technical Skills and Knowledge\n${data.w}/60`;
-                document.getElementById('score2').innerText = `Critical Thinking\n${data.x}/60`;
-                document.getElementById('score3').innerText = `Communication Skills\n${data.y}/60`;
-                document.getElementById('score4').innerText = `Teamwork and Adaptability\n${data.z}/60`;
+                document.getElementById('score1').innerText = `Technical Skills and Knowledge\n${data[0]}/60`;
+                document.getElementById('score2').innerText = `Critical Thinking\n${data[1]}/60`;
+                document.getElementById('score3').innerText = `Communication Skills\n${data[2]}/60`;
+                document.getElementById('score4').innerText = `Teamwork and Adaptability\n${data[3]}/60`;
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
