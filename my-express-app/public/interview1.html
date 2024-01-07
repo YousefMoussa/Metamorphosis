@@ -150,7 +150,7 @@
                 typeWriter(text, i + 1, fnCallback);
               }, 100);
             } else if (typeof fnCallback == "function") {
-              setTimeout(fnCallback, 700);
+              setTimeout(fnCallback, 100);
             }
           }
 
@@ -189,6 +189,7 @@
         <button class="Button" id="resetRecording">RESTART</button>
       </div>
     </div>
+    <video id="cameraFeed" width="640" height="480" autoplay></video>
     <script>
       // Script for video recording
       document.addEventListener("DOMContentLoaded", function () {
@@ -209,10 +210,17 @@
       downloadButton.addEventListener('click', downloadRecording);
 
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        navigator.mediaDevices.getUserMedia({
+          video: {
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+            frameRate: { ideal: 30 }
+          },
+          audio: true
+        })
           .then(function (stream) {
             //video.srcObject = stream; //Making Showing the User the Video
-            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9' });
 
             mediaRecorder.ondataavailable = function (event) {
               if (event.data.size > 0) {
@@ -261,10 +269,14 @@
         document.body.appendChild(a);
         a.style = 'display: none';
         a.href = url;
-        a.download = 'AnswerRecording.mp4'; // Changed file name
+        a.download = 'AnswerRecording1.mp4'; // Changed file name
         a.click();
         window.URL.revokeObjectURL(url);
-        window.location.href = 'about.html';
+        // Send a request to the server to run the Python script
+        //fetch('/run-python-script1', { method: 'POST' })
+        //fetch('/run-demogpt', { method: 'POST' })
+        fetch('/run-1st', { method: 'POST' })
+        window.location.href = 'interview2.html';
       }
     });
     </script>

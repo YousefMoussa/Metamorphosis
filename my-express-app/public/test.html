@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+      body {
+        margin: 80px;
+        padding: 0;
+        background: url(picture.jpg) center center fixed;
+      }
+
+      .link {
+        padding-bottom: 0px;
+        padding-right: 7px;
+        color: #cad2c5;
+        text-decoration: none;
+        text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: space-around;
+        font-family: "Montserrat", "Gill Sans", "Gill Sans MT", Calibri,
+          "Trebuchet MS", sans-serif;
+      }
+    </style>
+</head>
+<body>
+  <div class="link">
+    <h4><a href="homepage.html" class="link">Role</a></h4>
+      <h4><a href="resume.html" class="link">Resume</a></h4>
+      <h4><a href="about.html" class="link">About</a></h4>
+    </div>
+  </div>
+
+  <h1>Record Video and Audio</h1>
+  <video id="cameraFeed" width="640" height="480" autoplay></video>
+  <button id="startRecording">Start</button> 
+  <button id="stopRecording" disabled>Stop</button> 
+  <button id="resetRecording">Reset</button> 
+  <button id="downloadRecording" disabled>Done!</button> 
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const video = document.getElementById('cameraFeed');
+      const startButton = document.getElementById('startRecording');
+      const stopButton = document.getElementById('stopRecording');
+      const resetButton = document.getElementById('resetRecording');
+      const downloadButton = document.getElementById('downloadRecording');
+
+      let mediaRecorder;
+      let recordedChunks = [];
+
+      startButton.addEventListener('click', startRecording);
+      stopButton.addEventListener('click', stopRecording);
+      resetButton.addEventListener('click', resetRecording);
+      downloadButton.addEventListener('click', downloadRecording);
+
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+          .then(function (stream) {
+            //video.srcObject = stream; //Making Showing the User the Video
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.ondataavailable = function (event) {
+              if (event.data.size > 0) {
+                recordedChunks.push(event.data);
+              }
+            };
+
+            mediaRecorder.onstop = function () {
+              downloadButton.disabled = false;
+            };
+          })
+          .catch(function (error) {
+            console.error('Error accessing camera and microphone:', error);
+          });
+      } else {
+        console.error('getUserMedia is not supported on your browser');
+      }
+
+      function startRecording() {
+        recordedChunks = [];
+        mediaRecorder.start();
+        startButton.disabled = true;
+        stopButton.disabled = false;
+        resetButton.disabled = true;
+        downloadButton.disabled = true;
+      }
+
+      function stopRecording() {
+        mediaRecorder.stop();
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        resetButton.disabled = false;
+      }
+
+      function resetRecording() {
+        recordedChunks = [];
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        downloadButton.disabled = true;
+      }
+
+      function downloadRecording() {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style = 'display: none';
+        a.href = url;
+        a.download = 'AnswerRecording.mp4'; // Changed file name
+        a.click();
+        window.URL.revokeObjectURL(url);
+        window.location.href = 'interview.html';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+      body {
+        margin: 80px;
+        padding: 0;
+        background: url(picture.jpg) center center fixed;
+      }
+
+      .link {
+        padding-bottom: 0px;
+        padding-right: 7px;
+        color: #cad2c5;
+        text-decoration: none;
+        text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: space-around;
+        font-family: "Montserrat", "Gill Sans", "Gill Sans MT", Calibri,
+          "Trebuchet MS", sans-serif;
+      }
+
+      h1 {
+        font-size: 60px;
+        text-transform: uppercase;
+        margin: 50px;
+        position: relative;
+        color: #cad2c5;
+        font-family: "Outfit", sans-serif;
+      }
+
+      span {
+        border-right: 0.05em solid;
+        animation: caret 1s steps(1) infinite;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      @keyframes caret {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      .Button {
+        margin: 5px;
+        /*padding: 10px;*/
+        width: 206px;
+        height: 73px;
+        font-size: 30.73px;
+        text-align: center;
+        background-color: #84a98c;
+        color: #bcd0c0;
+        border: none;
+        border-radius: 104px;
+        cursor: pointer;
+        font-family: "Outfit", sans-serif;
+        letter-spacing: 7%;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for background and shadow */
+      }
+      .Button:not(:disabled) {
+        background-color: #9cc5a1; /* Lighter color for active button */
+        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.3); /* Larger shadow for 'illuminated' effect */
+        cursor: pointer;
+      }
+
+      .Button:disabled {
+        cursor: not-allowed;
+        background-color: #6b7f6a; /* Darker color for disabled button */
+      }
+      .startstop,
+      .pauserestart {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /*{
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center horizontally
+        margin-top: 20px;
+      }*/
+
+      .ButtonText {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100px; /* Adjust the fixed height as needed */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="link">
+      <h4><a href="homepage.html" class="link">Role</a></h4>
+      <h4><a href="resume.html" class="link">Resume</a></h4>
+      <h4><a href="about.html" class="link">About</a></h4>
+    </div>
+
+    <div class="main">
+      <h1>Hallo, Wij zijn Codefield!<span aria-hidden="true"></span></h1>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var dataText = []; // Initialize dataText as an empty array
+      
+          // Function to load and parse the JSON file
+          function loadJSON() {
+            fetch('output_3.json')
+              .then(response => response.json())
+              .then(json => {
+                dataText = json; // Assign the JSON content to dataText
+                startTextAnimation(0); // Start the animation
+              })
+              .catch(error => console.error('Error loading JSON:', error));
+          }
+      
+          loadJSON(); // Load the JSON and update the dataText array
+          
+          function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+              document.querySelector("h1").innerHTML =
+                text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
+              setTimeout(function () {
+                typeWriter(text, i + 1, fnCallback);
+              }, 100);
+            } else if (typeof fnCallback == "function") {
+              setTimeout(fnCallback, 100);
+            }
+          }
+
+          function startTextAnimation(i) {
+            if (typeof dataText[i] == "undefined") {
+              // Remove or comment out the following line to stop the loop
+              // setTimeout(function () {
+              //   startTextAnimation(0);
+              // }, 20000);
+              return; // Exit the function if there's no more text to display
+            }
+            if (i < dataText.length) {
+              typeWriter(dataText[i], 0, function () {
+                startTextAnimation(i + 1);
+              });
+            }
+          }
+
+          startTextAnimation(0);
+        });
+      </script>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="ButtonText">
+      <div class="startstop">
+        <button class="Button" id="startRecording">START</button>
+        <button class="Button" id="stopRecording" disabled>STOP</button>
+      </div>
+
+      <div class="pauserestart">
+        <button class="Button" id="downloadRecording" disabled>DONE</button>
+        <button class="Button" id="resetRecording">RESTART</button>
+      </div>
+    </div>
+    <script>
+      // Script for video recording
+      document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById('cameraFeed');
+        const startButton = document.getElementById('startRecording');
+        const stopButton = document.getElementById('stopRecording');
+        const resetButton = document.getElementById('resetRecording');
+        const downloadButton = document.getElementById('downloadRecording');
+
+        // ... rest of the recording script ...
+      
+        let mediaRecorder;
+      let recordedChunks = [];
+
+      startButton.addEventListener('click', startRecording);
+      stopButton.addEventListener('click', stopRecording);
+      resetButton.addEventListener('click', resetRecording);
+      downloadButton.addEventListener('click', downloadRecording);
+
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+          .then(function (stream) {
+            //video.srcObject = stream; //Making Showing the User the Video
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.ondataavailable = function (event) {
+              if (event.data.size > 0) {
+                recordedChunks.push(event.data);
+              }
+            };
+
+            mediaRecorder.onstop = function () {
+              downloadButton.disabled = false;
+            };
+          })
+          .catch(function (error) {
+            console.error('Error accessing camera and microphone:', error);
+          });
+      } else {
+        console.error('getUserMedia is not supported on your browser');
+      }
+
+      function startRecording() {
+        recordedChunks = [];
+        mediaRecorder.start();
+        startButton.disabled = true;
+        stopButton.disabled = false;
+        resetButton.disabled = true;
+        downloadButton.disabled = true;
+      }
+
+      function stopRecording() {
+        mediaRecorder.stop();
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        resetButton.disabled = false;
+      }
+
+      function resetRecording() {
+        recordedChunks = [];
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        downloadButton.disabled = true;
+      }
+
+      function downloadRecording() {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style = 'display: none';
+        a.href = url;
+        a.download = 'AnswerRecording3.mp4'; // Changed file name
+        a.click();
+        window.URL.revokeObjectURL(url);
+        // Send a request to the server to run the Python script
+        //fetch('/run-python-script3', { method: 'POST' })
+        fetch('/run-3rd', { method: 'POST' })
+        window.location.href = 'interview4.html';
+      }
+    });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+import cloudconvert
+import os
+
+def convert_mp4_to_mp3(api_key, input_file, output_file):
+    cloudconvert.configure(api_key=api_key)
+
+    process = cloudconvert.Process.create(input_format='mp4', output_format='mp3')
+    process.upload(input=input_file, filename=os.path.basename(input_file))
+    process.wait()
+    process.download(output_file)
+
+def main():
+    cloudconvert_api_key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiM2JlMmE3ZDRiMDY1ZTc2NmE0M2E4NDhkMjZmMzIxMDFjMzU3NzgxYjg3NjgzYzg2MWY2NTM0OTI2NzY3NzliODNlZWExNjVmN2YwMjQ1MGYiLCJpYXQiOjE3MDQ2NDU5MzAuNzMyMzE2LCJuYmYiOjE3MDQ2NDU5MzAuNzMyMzE3LCJleHAiOjQ4NjAzMTk1MzAuNzI3Mzg1LCJzdWIiOiI2NjczOTQzNSIsInNjb3BlcyI6WyJ1c2VyLnJlYWQiLCJwcmVzZXQucmVhZCIsInVzZXIud3JpdGUiLCJ0YXNrLnJlYWQiLCJ0YXNrLndyaXRlIiwid2ViaG9vay5yZWFkIl19.cmwSGAAWOgxjhw3xPlLYLdv0Uqceg7hRUH2S9xTT3Tg2Qr33MYKd7qDEr5_O1EM85ubG1ZF0Pwtqn8Bfe5dm5dztzrujr_6bF_5ibFECJpa8dF-cBzTTl8nGTyEM1rILSnx0w4SLqNsw12k6tZmkzM4hia67FPAhQ8S0NA3je8RLOzwWl0iEj3zaqjo_cs6hXiezWqIQfiJBra9MDIIgGyX4Au2bUYLmBxUK8j8RTEW7ZIPHjCuvIjf1o0PDUbH2AbEKoUvkXjHVPCwcVcUMTXlgitJklN6YiK3G5ythINbXdKPAH14aku_6tiI07zsNTPTODzGoeR-KQ4jM5qKs02GabEMxCG1fl1H9Bk9FpVECIELbMr6yUJWElRAxl_KXdDqP0jMycPF9GvLvBpXjM16h9BBWmFrGwj3OSrLcwDKeoS6btUpSA5vSNUR4shsWMVPM6KfMt5y2ULJxMQjXrJskdKjcmcFJTPlCZ2cOeS1GUgw3XfkdO6t4CgK6JrxEwIQzogH9cp5k8qIrtMqaumi5PSUH49Raj2gOK1X-sbn38HmTjFpoAJH9S4wNKk4fNh3EZRV-uKRBeTwxwsmyeZx4-Vn3YOlZu340h6yqwaSsHy0sHKdzQal_F2mTD6Hj-nDJ-gtHBvnrco_wnAnXbb5apQhCGhDY6whOt043SMc'
+    video_file = "C:\\Hacked_Jan6\\Metamorphosis\\AnswerRecording1.mp4"
+    audio_file = "C:\\Hacked_Jan6\\Metamorphosis\\temp_audio1.mp3"
+
+    convert_mp4_to_mp3(cloudconvert_api_key, video_file, audio_file)
+    print("Conversion complete. Audio saved to", audio_file)
+
+main()
