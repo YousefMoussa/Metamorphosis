@@ -22,6 +22,22 @@
             padding:0;
             background: url(picture.jpg) center center fixed;
         }
+        body{
+            animation: transitionIn 0.75s;
+        }
+
+
+        @keyframes transitionIn {
+            from{
+                opacity: 0;
+                transform: rotateX(-10deg);
+        }
+        to {
+            opacity: 1;
+            transform: rotateX(0);
+        }
+}
+        
         .link{
             padding-bottom:0px;
             padding-right:7px ;
@@ -86,7 +102,7 @@
                 <br><br>
                 <input type="file" name="pdfFile" id="pdfFile" accept=".pdf">
                 <button type="submit" name="submit">Upload</button>
-            </form>
+            </form> 
         </div>
     </div>
 </body>

@@ -18,6 +18,22 @@
             font-family: "Montserrat",sans-serif;
         }
         body{
+    animation: transitionIn 0.75s;
+    }
+
+
+    @keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: rotateX(-10deg);
+    }
+    to {
+       opacity: 1;
+       transform: rotateX(0);
+   
+    }
+}
+        body{
             margin:80px;
             padding:0;
             background:url(picture.jpg) center center fixed;
