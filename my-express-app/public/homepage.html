@@ -50,16 +50,16 @@
             width:650px;
             height:40px;
             border-radius: 15px;
-            border: 2px #8CD867;
+            border: 5px #8CD867;
             padding-left:10px;
             background: white;
-            filter: blur(12px);
-            transition: background 0.3s ease, filter 0.3s ease;
+
+            transition: background 0.3s ease;
         }
 
         #searchbar:focus {
+            outline: none;
             background: rgba(255, 255, 255, 0.8); /* Adjusted transparency on focus */
-            filter: blur(15px)
         }
 
         #searchbar::placeholder{
@@ -74,8 +74,15 @@
             width:650px;
             height:60px;
             border-radius: 15px;
-            border: 2px solid black;
+            /*border: 2px solid black;*/
             padding-left:10px;
+            transition: background 0.3s ease, filter 0.3s ease;
+        }
+
+
+        #descp:focus{
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
         }
         #descp::placeholder{
             text-align: center;
