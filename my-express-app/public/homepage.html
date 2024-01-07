@@ -128,24 +128,20 @@
     <br>
     <br>
     <div class="forms">
-        <form action="yousefsfile.py">
-        <label for="searchbar"></label>
-        <input type="text" name="jobtitle" id="searchbar" placeholder="What role are you applying for? Ex: Accountant, Event Planner, etc.">
-        <br>
-        <br>
-        <br>
-        <label for="descp"></label>
-        <textarea name="String" cols="50" rows="10" id="descp" placeholder="Can you please describe your role?"></textarea>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="buttons">
-        <input type="submit" value="Enter">
-            <input type="reset" value="Reset">
-        </div>
-    </div>
-    </form>
+        <form action="/submit-form" method="post" class="forms">
+            <label for="searchbar"></label>
+            <input type="text" name="jobtitle" id="searchbar" placeholder="What role are you applying for? Ex: Accountant, Event Planner, etc.">
+            <br><br><br>
+
+            <label for="descp"></label>
+            <textarea name="description" cols="50" rows="10" id="descp" placeholder="Can you please describe your role?"></textarea>
+            <br><br><br><br>
+
+            <div class="buttons">
+                <input type="submit" value="Enter">
+                <input type="reset" value="Reset">
+            </div>
+        </form>
     </div>
 </body>
 </html>
