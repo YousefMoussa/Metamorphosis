@@ -79,8 +79,18 @@
         font-family: "Outfit", sans-serif;
         letter-spacing: 7%;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for background and shadow */
+      }
+      .Button:not(:disabled) {
+        background-color: #9cc5a1; /* Lighter color for active button */
+        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.3); /* Larger shadow for 'illuminated' effect */
+        cursor: pointer;
       }
 
+      .Button:disabled {
+        cursor: not-allowed;
+        background-color: #6b7f6a; /* Darker color for disabled button */
+      }
       .startstop,
       .pauserestart {
         display: flex;
@@ -116,14 +126,22 @@
       <h1>Hallo, Wij zijn Codefield!<span aria-hidden="true"></span></h1>
 
       <script>
-        document.addEventListener("DOMContentLoaded", function (event) {
-          var dataText = [
-            "Utrecht.",
-            "Full Service.",
-            "Webdevelopment.",
-            "Hello my name is labeeba and i dont like this",
-          ];
-
+        document.addEventListener("DOMContentLoaded", function () {
+          var dataText = []; // Initialize dataText as an empty array
+      
+          // Function to load and parse the JSON file
+          function loadJSON() {
+            fetch('output_1.json')
+              .then(response => response.json())
+              .then(json => {
+                dataText = json; // Assign the JSON content to dataText
+                startTextAnimation(0); // Start the animation
+              })
+              .catch(error => console.error('Error loading JSON:', error));
+          }
+      
+          loadJSON(); // Load the JSON and update the dataText array
+          
           function typeWriter(text, i, fnCallback) {
             if (i < text.length) {
               document.querySelector("h1").innerHTML =
@@ -138,11 +156,13 @@
 
           function startTextAnimation(i) {
             if (typeof dataText[i] == "undefined") {
-              setTimeout(function () {
-                startTextAnimation(0);
-              }, 20000);
+              // Remove or comment out the following line to stop the loop
+              // setTimeout(function () {
+              //   startTextAnimation(0);
+              // }, 20000);
+              return; // Exit the function if there's no more text to display
             }
-            if (i < dataText[i].length) {
+            if (i < dataText.length) {
               typeWriter(dataText[i], 0, function () {
                 startTextAnimation(i + 1);
               });
@@ -160,14 +180,93 @@
 
     <div class="ButtonText">
       <div class="startstop">
-        <button class="Button">START</button>
-        <button class="Button">STOP</button>
+        <button class="Button" id="startRecording">START</button>
+        <button class="Button" id="stopRecording" disabled>STOP</button>
       </div>
 
       <div class="pauserestart">
-        <button class="Button">DONE</button>
-        <button class="Button">RESTART</button>
+        <button class="Button" id="downloadRecording" disabled>DONE</button>
+        <button class="Button" id="resetRecording">RESTART</button>
       </div>
     </div>
+    <script>
+      // Script for video recording
+      document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById('cameraFeed');
+        const startButton = document.getElementById('startRecording');
+        const stopButton = document.getElementById('stopRecording');
+        const resetButton = document.getElementById('resetRecording');
+        const downloadButton = document.getElementById('downloadRecording');
+
+        // ... rest of the recording script ...
+      
+        let mediaRecorder;
+      let recordedChunks = [];
+
+      startButton.addEventListener('click', startRecording);
+      stopButton.addEventListener('click', stopRecording);
+      resetButton.addEventListener('click', resetRecording);
+      downloadButton.addEventListener('click', downloadRecording);
+
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+          .then(function (stream) {
+            //video.srcObject = stream; //Making Showing the User the Video
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.ondataavailable = function (event) {
+              if (event.data.size > 0) {
+                recordedChunks.push(event.data);
+              }
+            };
+
+            mediaRecorder.onstop = function () {
+              downloadButton.disabled = false;
+            };
+          })
+          .catch(function (error) {
+            console.error('Error accessing camera and microphone:', error);
+          });
+      } else {
+        console.error('getUserMedia is not supported on your browser');
+      }
+
+      function startRecording() {
+        recordedChunks = [];
+        mediaRecorder.start();
+        startButton.disabled = true;
+        stopButton.disabled = false;
+        resetButton.disabled = true;
+        downloadButton.disabled = true;
+      }
+
+      function stopRecording() {
+        mediaRecorder.stop();
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        resetButton.disabled = false;
+      }
+
+      function resetRecording() {
+        recordedChunks = [];
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        downloadButton.disabled = true;
+      }
+
+      function downloadRecording() {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style = 'display: none';
+        a.href = url;
+        a.download = 'AnswerRecording.mp4'; // Changed file name
+        a.click();
+        window.URL.revokeObjectURL(url);
+        window.location.href = 'about.html';
+      }
+    });
+    </script>
   </body>
 </html>
