@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom Styles and Google Fonts from the first file -->
+    <style>
+      /* ... (existing styles from the second file) ... */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+      body {
+        margin: 80px;
+        padding: 0;
+        background: url(picture.jpg) center center fixed;
+      }
+
+      .link {
+        padding-bottom: 0px;
+        padding-right: 7px;
+        color: #cad2c5;
+        text-decoration: none;
+        text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: space-around;
+        font-family: "Montserrat", "Gill Sans", "Gill Sans MT", Calibri,
+          "Trebuchet MS", sans-serif;
+      }
+
+      .question {
+        text-decoration: none;
+        font-family: "Outfit", sans-serif;
+        font-size: 40px;
+        color: #cad2c5;
+        padding: 100px;
+        display: flex;
+      }
+
+      .button {
+        margin: 5px;
+        /*padding: 10px;*/
+        width: 206px;
+        height: 73px;
+        font-size: 30.73px;
+        text-align: center;
+        background-color: #84a98c;
+        color: #bcd0c0;
+        border: none;
+        border-radius: 104px;
+        cursor: pointer;
+        font-family: "Outfit", sans-serif;
+        letter-spacing: 7%;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+
+      .analysis {
+        text-decoration: none;
+        font-family: "Outfit", sans-serif;
+        font-size: 60px;
+        color: #8cd867;
+        text-align: center;
+        margin-top: 219px;
+        text-shadow: 0px 4px 9px rgba(0, 0, 0, 0.3);
+      }
+
+      .images {
+        display: flex; /* Establishes a flex container */
+        justify-content: center; /* Centers children horizontally in the container */
+        align-items: center; /* Aligns children vertically in the middle */
+        flex-wrap: wrao; /* Prevents images from wrapping onto the next line */
+
+        padding-bottom: 0px;
+      }
+
+      .images img {
+        margin: 6%;
+        border-radius: 28px; /* Provides space around images */
+      }
+
+      .progress {
+        text-decoration: none;
+        font-family: "Outfit", sans-serif;
+        font-size: 60px;
+        font-weight: 900;
+        color: #8cd867;
+        text-align: center;
+        margin-top: 720px;
+        text-shadow: 0px 4px 9px rgba(0, 0, 0, 0.3);
+      }
+
+      .analysis,
+      .progress {
+        /*display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 20px 0; /* This adds some space above and below the headers */
+        text-align: center; /* Center the text horizontally */
+        width: 100%; /* Take full width to center properly */
+        margin-top: 20px; /* Space between the counters and the text */
+      }
+
+      /* Styles from the first file for progress counters */
+      .container {
+        display: flex;
+        width: auto;
+        padding: 50px;
+        border-radius: 8px;
+        background: none;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        overflow-x: visible; /* Added to push it above the Progress section */
+      }
+
+      .progress-container {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+        margin: 20px;
+
+        min-width: 225px; /* Width of the circular progress */
+      }
+
+      @media (max-width: 768px) {
+        /* Adjust breakpoint as necessary */
+        .container {
+          flex-wrap: wrap;
+        }
+      }
+
+      .circular-progress {
+        position: relative;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        background: conic-gradient(#84a98c 3.6deg, #ededed 0deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin: 5px; /* Add some space around each circular progress */
+      }
+
+      .circular-progress::before {
+        content: "";
+        position: absolute;
+        height: 160px;
+        width: 160px;
+        border-radius: 50%;
+        background-color: #474954;
+      }
+
+      .progress-value {
+        position: relative;
+        font-size: 30px;
+        font-weight: 600;
+        color: #000000;
+      }
+
+      .text {
+        font-size: 20px; /* Adjusted for better fit */
+        font-weight: 900;
+        color: #84a98c;
+        margin-top: 10px; /* Space between the counter and text */
+        text-align: center; /* Ensure the text is centered */
+        width: 100%; /* Set width to match the parent container */
+        padding: 0 10px; /* Add some padding for better text wrapping */
+        box-sizing: border-box; /* Ensure padding is included in the width */
+      }
+
+      .header {
+        font-family: "Outfit", sans-serif;
+        font-size: 19.73px;
+        font-weight: 900;
+        color: #84a98c;
+        display: inline-flex;
+        text-align: center;
+        justify-content: center;
+
+        flex-wrap: nowrap;
+        text-align: center;
+        width: 100%;
+        padding-top: 0px;
+      }
+
+      .header h6 {
+        margin: 6%;
+      }
+      .content {
+        font-family: "Montserrat", sans-serif;
+        font-size: 19.73px;
+        display: inline-flex;
+        text-align: center;
+        justify-content: center;
+
+        flex-wrap: nowrap;
+        text-align: center;
+        width: 100%;
+        padding-top: 0px;
+      }
+
+      .content h6 {
+        margin: 6%;
+      }
+      .para1 {
+        width: 1200px;
+        padding-right: 50px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+      .text1 {
+        width: 1200px;
+        /* padding-left: 100px; */
+        box-sizing: border-box;
+        text-align: center;
+      }
+      .text2 {
+        width: 1200px;
+        padding-right: 20px;
+        text-align: center;
+      }
+      .text3 {
+        width: 1200px;
+        padding-right: 20px;
+        box-sizing: border-box;
+      }
+      .content {
+        display: flex;
+        justify-content: space-around;
+        font-family: "Montserrat", "Gill Sans", "Gill Sans MT", Calibri,
+          "Trebuchet MS", sans-serif;
+        color: #cad2c5;
+        /* padding-left: 20px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="link">
+      <h4><a href="homepage.html" class="link">Role</a></h4>
+      <h4><a href="resume.html" class="link">Resume</a></h4>
+      <h4><a href="about.html" class="link">About</a></h4>
+    </div>
+
+    <div class="question">
+      <h2>
+        Can you provide more details about your experience in analyzing and
+        interpreting large datasets?
+      </h2>
+    </div>
+
+    <div>
+      <button class="button">Next Question</button>
+    </div>
+    <div class="analysis">
+      <h3>Analysis</h3>
+    </div>
+
+    <div class="images">
+      <img class="techImage" src="images/techpic.jpg" alt="technical skills" />
+      <img class="critImage" src="images/critpic.jpg" alt="critical thinking" />
+
+      <img
+        class="commImage"
+        src="images/compic.jpg"
+        alt="communication skills"
+      />
+      <img class="teamImage" src="images/teampic.jpg" alt="teamwork" />
+    </div>
+
+    <div class="header">
+      <h6>Technical Skills and Knowledge</h6>
+      <h6>Critical Thinking</h6>
+      <h6>Communication Skills</h6>
+      <h6>Teamwork and Adaptability</h6>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="content">
+      <h6 class="para1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ducimus
+        dolores rem officiis molestiae veritatis consectetur reprehenderit
+        consequuntur quasi fugit magni voluptates consequatur error rerum in
+        quibusdam eius, nisi commodi eveniet. Totam ratione rerum temporibus
+        deserunt facilis dolorum suscipit omnis?
+      </h6>
+      <h6 class="text1">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio ipsam
+        totam tempore earum aperiam velit nobis minima voluptates animi quaerat
+        reprehenderit quos voluptatibus, distinctio, excepturi quae, adipisci
+        impedit minus vel harum natus quasi neque ad rem! Necessitatibus
+        consequatur sit tempore!
+      </h6>
+      <h6 class="text2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit eaque
+        tempore quas, in, quaerat enim error molestiae, corporis facilis non
+        blanditiis delectus harum quos laudantium. Odio nihil saepe culpa
+        ratione sed. Explicabo rerum iure numquam perferendis id ea optio
+        architecto.
+      </h6>
+      <h6 class="text3">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam id quaerat
+        atque unde itaque aut! Porro fugit velit, ipsum amet pariatur explicabo
+        temporibus ipsa doloremque quos non sed corrupti architecto enim iste
+        maiores saepe animi. Beatae, consectetur. Excepturi, facilis quia.
+      </h6>
+    </div>
+
+    <div class="progress">
+      <h3>Progress</h3>
+    </div>
+
+    <!-- Progress counters and texts from the first file -->
+    <div class="container">
+      <div class="progress-container">
+        <div class="circular-progress">
+          <span class="progress-value">0%</span>
+        </div>
+        <span class="text">Technical Skills and Knowledge</span>
+      </div>
+
+      <div class="progress-container">
+        <div class="circular-progress">
+          <span class="progress-value">0%</span>
+        </div>
+        <span class="text">Critical Thinking</span>
+      </div>
+
+      <div class="progress-container">
+        <div class="circular-progress">
+          <span class="progress-value">0%</span>
+        </div>
+        <span class="text">Communication Skills</span>
+      </div>
+
+      <div class="progress-container">
+        <div class="circular-progress">
+          <span class="progress-value">0%</span>
+        </div>
+        <span class="text">Teamwork and Adaptability</span>
+      </div>
+    </div>
+
+    <script>
+      document
+        .querySelectorAll(".circular-progress")
+        .forEach((progressBar, index) => {
+          let progressValue = progressBar.querySelector(".progress-value");
+          let progressStartValue = 0;
+          let progressEndValue = [90, 75, 60, 45][index]; // Different end values for each progress bar
+          let speed = 50;
+
+          let progress = setInterval(() => {
+            progressStartValue++;
+
+            progressValue.textContent = `${progressStartValue}%`;
+            progressBar.style.background = `conic-gradient(#7d2ae8 ${
+              progressStartValue * 3.6
+            }deg, #ededed 0deg)`;
+
+            if (progressStartValue == progressEndValue) {
+              clearInterval(progress);
+            }
+          }, speed);
+        });
+    </script>
+  </body>
+</html>
