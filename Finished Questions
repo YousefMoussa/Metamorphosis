@@ -3,7 +3,7 @@ import requests
 from PDFExtract import *
 import re
 from DetailsAndRole import *
-openai.api_key = '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'
+openai.api_key = 'HiddenApiKey'
 URL = "https://api.openai.com/v1/chat/completions"
 
 
