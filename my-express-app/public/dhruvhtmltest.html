@@ -89,53 +89,55 @@
     <h3>Sign up below to order today!</h3>
     </form>
     <form action="/submit-form" method="post">
-    <div>
-    <label for="customername">Name of the Customer:</label>
-    <input type="text" name="name" id="customername">
-    </div>
-    <br>
-    <div>
-    <label for="color">Color Wanted:</label>
-    <select name="color" id="color">
-        <option name="1">Grey</option>
-        <option name="2">Red</option>
-        <option name="3">Yellow</option>
-        <option name="4">Black</option>
-        <option name="5">Silver</option>
-        <option name="6">Blue</option>
-        <option name="7" selected>None of the above</option>
-    </select>
-    </div>
-    <br>
-    <div>
-    <label for="Jobtitle">What is the title of your job?</label>
-    <input type="text" name="Jobtitle" id="Jobtitle">
-    </div>
-    <br>
-    </div>
-    <label for="JobDiscription">What is the description of your job?</label>
-    <input type="text" name="JobDiscription" id="JobDiscription">
-    </div>
-    <br>
-    </div>
-    <label for="deposit">Deposit transferred in &pound;'s:</label>
-    <input type="number" name="deposit" id="deposit">
-    </div>
-    <br>
-    </div>
-    <label for="date">When do you want it by?</label>
-    <input type="date" name="date" id="date">
-    </div>
-    <br>
-    <div>
-    <label for="terms">Do you agree to our terms and conditions?</label>
-    <input type="checkbox" name="check" id="terms">
-    </div>
-    <br>
-    <div>
-        Do you want more emails from us? Yes <input type="radio" name="emails"> No <input type="radio" name="emails">
-    </div>
-    <br>
+        <div>
+            <label for="customername">Name of the Customer:</label>
+            <input type="text" name="name" id="customername">
+        </div>
+        <br>
+        <div>
+            <label for="color">Color Wanted:</label>
+            <select name="color" id="color">
+                <option value="Grey">Grey</option>
+                <option value="Red">Red</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Black">Black</option>
+                <option value="Silver">Silver</option>
+                <option value="Blue">Blue</option>
+                <option value="None" selected>None of the above</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label for="Jobtitle">What is the title of your job?</label>
+            <input type="text" name="Jobtitle" id="Jobtitle">
+        </div>
+        <br>
+        <div>
+            <label for="JobDiscription">What is the description of your job?</label>
+            <input type="text" name="JobDiscription" id="JobDiscription">
+        </div>
+        <br>
+        <div>
+            <label for="deposit">Deposit transferred in &pound;'s:</label>
+            <input type="number" name="deposit" id="deposit">
+        </div>
+        <br>
+        <div>
+            <label for="date">When do you want it by?</label>
+            <input type="date" name="date" id="date">
+        </div>
+        <br>
+        <div>
+            <label for="terms">Do you agree to our terms and conditions?</label>
+            <input type="checkbox" name="check" id="terms">
+        </div>
+        <br>
+        <div>
+            Do you want more emails from us? Yes <input type="radio" name="emails" value="Yes"> No <input type="radio" name="emails" value="No">
+        </div>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <label for="pdfFile">Select a PDF file:</label>
         <input type="file" name="pdfFile" id="pdfFile" accept=".pdf">

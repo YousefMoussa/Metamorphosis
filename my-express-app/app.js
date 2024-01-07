@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const multer = require('multer');
+const bodyParser = require('body-parser');
+const fs = require('fs');
 const port = 3000;
 
 // Set up storage location and filename for multer
@@ -22,14 +24,36 @@ const upload = multer({ storage: storage });
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'dhruvhtmltest.html'));
+  res.sendFile(path.join(__dirname, 'public', 'homepage.html'));
+  //res.sendFile(path.join(__dirname, 'public', 'dhruvhtmltest.html'));
 });
+
+// Middleware for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Handle file upload POST request
 app.post('/upload', upload.single('pdfFile'), (req, res) => {
   // 'pdfFile' is the name attribute in your HTML file input
   console.log(req.file); // Information about the uploaded file
   res.send('File uploaded successfully');
+});
+
+// Handle form submission POST request
+app.post('/submit-form', (req, res) => {
+    const jobTitle = req.body.Jobtitle;
+    const jobDescription = req.body.JobDiscription;
+
+    // Create a string to save to the .txt file
+    const content = `Job_Title = \'${jobTitle}\'\nJob_Description = \'${jobDescription}\'`;
+
+    // Write to a .txt file
+    fs.writeFile('C:/Hacked_Jan6/Metamorphosis/DetailsAndRole.py', content, (err) => {
+        if (err) {
+            console.error(err);
+            return res.send('An error occurred while writing to the file.');
+        }
+        res.send('Form data received and file written.');
+    });
 });
 
 app.listen(port, () => {
