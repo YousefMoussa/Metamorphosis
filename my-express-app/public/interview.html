@@ -42,11 +42,12 @@
       }
 
       h1 {
-        font-size: 5em;
+        font-size: 60px;
         text-transform: uppercase;
-        margin: 0;
+        margin: 50px;
         position: relative;
-        color: white;
+        color: #cad2c5;
+        font-family: "Outfit", sans-serif;
       }
 
       span {
@@ -68,13 +69,16 @@
         /*padding: 10px;*/
         width: 206px;
         height: 73px;
-        font-size: 1em;
+        font-size: 30.73px;
         text-align: center;
         background-color: #84a98c;
         color: #bcd0c0;
         border: none;
         border-radius: 104px;
         cursor: pointer;
+        font-family: "Outfit", sans-serif;
+        letter-spacing: 7%;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       }
 
       .startstop,
@@ -92,8 +96,12 @@
         margin-top: 20px;
       }*/
 
-      .ButtonGroup button {
-        margin-right: 10px;
+      .ButtonText {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100px; /* Adjust the fixed height as needed */
       }
     </style>
   </head>
@@ -113,7 +121,7 @@
             "Utrecht.",
             "Full Service.",
             "Webdevelopment.",
-            "Wij zijn Codefield!",
+            "Hello my name is labeeba and i dont like this",
           ];
 
           function typeWriter(text, i, fnCallback) {
@@ -145,6 +153,10 @@
         });
       </script>
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
 
     <div class="ButtonText">
       <div class="startstop">
@@ -153,7 +165,7 @@
       </div>
 
       <div class="pauserestart">
-        <button class="Button">PAUSE</button>
+        <button class="Button">DONE</button>
         <button class="Button">RESTART</button>
       </div>
     </div>
