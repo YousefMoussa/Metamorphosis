@@ -4,13 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap" rel="stylesheet">
     <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: "Montserrat",sans-serif;
+        }
         body{
+            margin:80px;
+            padding:0;
             background: url(picture.jpg) center center fixed;
+        }
+        .link{
+            padding-bottom:0px;
+            padding-right:7px ;
+            color:#F5F5F5;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-around;
+            font-family: 'Montserrat','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .head{
+            color:#CAD2C5;
+            font-family: 'Outfit','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 86px;
+            position:absolute;
+            left:150px;
+        }
+        .pdf{
+            font-family: 'Montserrat','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bolder;
+            border:2px solid #84A98C;
+            background-color: #84A98C;
+            height:300px;
+            width:400px;
+            border-radius: 100px;
+            text-align: center;
+            padding-top:110px;
+            position: absolute;
+            top: 180px;
+            left: 750px;
+        }
+        pdf::input{
+            border-radius:10000000px;
         }
     </style>
 </head>
 <body>
-    
+    <div class="link">
+        <h4><a href="homepage.html" class="link">Role</a></h4>
+        <h4><a href="resume.html" class="link">Resume</a></h4>
+        <h4><a href="about.html" class="link">About</a></h4>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="head">Upload Your<br>Resume!</h1>
+    <div class="pdf">
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <label for="pdfFile">Select a PDF file:</label>
+            <br>
+            <br>
+            <input type="file" name="pdfFile" id="pdfFile" accept=".pdf">
+            <button type="submit" name="submit">Upload</button>
+        </form>
+    </div>
 </body>
 </html>
