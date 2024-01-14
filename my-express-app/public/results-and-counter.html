@@ -21,16 +21,17 @@
       * {
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
+        /* box-sizing: border-box; */
         font-family: "Montserrat", sans-serif;
       }
       body {
-        margin: 80px;
+        /* margin: 80px; */
         padding: 0;
         background: url(picture.jpg) center center fixed;
       }
 
       .link {
+        margin-top:50px;
         padding-bottom: 0px;
         padding-right: 7px;
         color: #cad2c5;
@@ -49,6 +50,9 @@
         color: #cad2c5;
         padding: 100px;
         display: flex;
+        margin-left: 10px;
+        margin-right: 100px;
+
       }
 
       .button {
@@ -56,12 +60,12 @@
         /*padding: 10px;*/
         width: 206px;
         height: 73px;
-        font-size: 30.73px;
+        font-size: 28px;
         text-align: center;
         background-color: #84a98c;
         color: #bcd0c0;
         border: none;
-        border-radius: 104px;
+        border-radius: 95px;
         cursor: pointer;
         font-family: "Outfit", sans-serif;
         letter-spacing: 7%;
@@ -83,13 +87,13 @@
         display: flex; /* Establishes a flex container */
         justify-content: center; /* Centers children horizontally in the container */
         align-items: center; /* Aligns children vertically in the middle */
-        flex-wrap: wrao; /* Prevents images from wrapping onto the next line */
+        flex-wrap: wrap; /* Prevents images from wrapping onto the next line */
 
         padding-bottom: 0px;
       }
 
       .images img {
-        margin: 6%;
+        margin: 8%;
         border-radius: 28px; /* Provides space around images */
       }
 
@@ -186,15 +190,15 @@
         box-sizing: border-box; /* Ensure padding is included in the width */
       }
 
-      .header {
+      .title{
         font-family: "Outfit", sans-serif;
-        font-size: 19.73px;
+        font-size: 29.73px;
         font-weight: 900;
         color: #84a98c;
         display: inline-flex;
         text-align: center;
         justify-content: center;
-
+        padding-right:80px;
         flex-wrap: nowrap;
         text-align: center;
         width: 100%;
@@ -202,7 +206,7 @@
       }
 
       .header h6 {
-        margin: 6%;
+        margin: 4%;
       }
       .content {
         font-family: "Montserrat", sans-serif;
@@ -277,52 +281,72 @@
       <img class="techImage" src="images/techpic.jpg" alt="technical skills" />
       <img class="critImage" src="images/critpic.jpg" alt="critical thinking" />
 
-      <img
-        class="commImage"
-        src="images/compic.jpg"
-        alt="communication skills"
-      />
+      <img class="commImage" src="images/compic.jpg" alt="communication skills"/>
       <img class="teamImage" src="images/teampic.jpg" alt="teamwork" />
     </div>
 
-    <div class="header">
+    <!-- <div class="header">
       <h6>Technical Skills and Knowledge</h6>
       <h6>Critical Thinking</h6>
       <h6>Communication Skills</h6>
       <h6>Teamwork and Adaptability</h6>
-    </div>
+    </div> -->
 
     <br />
     <br />
 
     <div class="content">
-      <h6 class="para1">
+      <div class="para1">
+      <h6 class="title">Technical Skills and Knowledge</h6>
+      <br>
+      <br>
+      <br>
+      <h6>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ducimus
         dolores rem officiis molestiae veritatis consectetur reprehenderit
         consequuntur quasi fugit magni voluptates consequatur error rerum in
         quibusdam eius, nisi commodi eveniet. Totam ratione rerum temporibus
         deserunt facilis dolorum suscipit omnis?
       </h6>
-      <h6 class="text1">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio ipsam
-        totam tempore earum aperiam velit nobis minima voluptates animi quaerat
-        reprehenderit quos voluptatibus, distinctio, excepturi quae, adipisci
-        impedit minus vel harum natus quasi neque ad rem! Necessitatibus
-        consequatur sit tempore!
-      </h6>
-      <h6 class="text2">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit eaque
-        tempore quas, in, quaerat enim error molestiae, corporis facilis non
-        blanditiis delectus harum quos laudantium. Odio nihil saepe culpa
-        ratione sed. Explicabo rerum iure numquam perferendis id ea optio
-        architecto.
-      </h6>
-      <h6 class="text3">
+      </div>
+      <div class="para2">
+        <h6 class="title">Critical Thinking</h6>
+        <br>
+        <br>
+        <br>
+        <h6>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam id quaerat
         atque unde itaque aut! Porro fugit velit, ipsum amet pariatur explicabo
         temporibus ipsa doloremque quos non sed corrupti architecto enim iste
         maiores saepe animi. Beatae, consectetur. Excepturi, facilis quia.
       </h6>
+      </div>
+      <div class="para3">
+        <h6 class="title">Communication Skills</h6>
+        <br>
+        <br>
+        <br>
+        <h6>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio ipsam
+        totam tempore earum aperiam velit nobis minima voluptates animi quaerat
+        reprehenderit quos voluptatibus, distinctio, excepturi quae, adipisci
+        impedit minus vel harum natus quasi neque ad rem! Necessitatibus
+        consequatur sit tempore!
+        </h6>
+      </div>
+      <div class="para4">
+        <h6 class="title">Teamwork and Adaptability</h6>
+        <br>
+        <br>
+        <br>
+        <h6>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit eaque
+        tempore quas, in, quaerat enim error molestiae, corporis facilis non
+        blanditiis delectus harum quos laudantium. Odio nihil saepe culpa
+        ratione sed. Explicabo rerum iure numquam perferendis id ea optio
+        architecto.
+        </h6>
+      </div>
     </div>
 
     <div class="progress">
