@@ -19,14 +19,26 @@ Interview.io offers a unique, AI-based solution to prepare for job interviews. O
 - **Real-Time Feedback:** Instant analysis and tips on improving your answers. 📈
 - **User-Friendly Interface:** Easy-to-use platform for a smooth interview preparation experience. 🖥️
 
-## Getting Started 🚀
+## 🚀 Running the Application:
 
-To start using Interview.io:
+1. **Clone the Repository**:
+   - Open your terminal.
+   - Clone the repository using `git clone [repository-url]`.
+   - Navigate into the project directory (`cd [project-name]`).
 
-1. Clone this repository to your local machine.
-2. Install the required dependencies.
-3. Run the application and navigate to `http://localhost:3000` (or your configured port).
-4. Upload your resume, enter the job title, and get started!
+2. **Start the Server**:
+   - In the project directory, start your Node.js server (`node server.js`).
+
+3. **Open the Web Interface**:
+   - Launch a web browser and go to `http://localhost:3000`.
+
+4. **Interact with the Application**:
+   - On the webpage, upload your resume, enter job details, and conduct a mock interview.
+
+5. **Stop the Application**:
+   - To stop the server, go back to the terminal and press `Ctrl+C`.
+   - Close the browser tab to exit the application.
+
 
 ## How to Use 📖
 
