@@ -19,10 +19,10 @@ Interview.io offers a unique, AI-based solution to prepare for job interviews. O
 1. **Clone the Repository**:
    - Open your terminal.
    - Clone the repository using `git clone [repository-url]`.
-   - Navigate into the project directory (`cd [project-name]`).
+   - Navigate into the project directory (`cd .Metamophosis\my-express-app\`).
 
 2. **Start the Server**:
-   - In the project directory, start your Node.js server (`node server.js`).
+   - In the project directory, start your Node.js server (`node app.js`).
 
 3. **Open the Web Interface**:
    - Launch a web browser and go to `http://localhost:3000`.
