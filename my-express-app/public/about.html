@@ -1,16 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body{
-            background: url(picture.jpg) center center fixed;
-        }
+      :root {
+        --button-green: #84a98c;
+        --bone-colored-text: #cad2c5;
+      }
+
+      body {
+        background: url(picture.jpg) center center fixed;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        padding-bottom: 0;
+        padding-top: 2vh;
+      }
+
+      .wrapper {
+        max-width: 1148px;
+        margin: 0 auto;
+      }
+
+      /* Navbar */
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 1148px;
+        z-index: 100;
+        transition: opacity 0.5s ease;
+      }
+
+      nav .home {
+        text-decoration: none;
+        display: flex;
+        justify-content: space-around;
+        font-family: Outfit, "Montserrat", "Gill Sans", "Gill Sans MT", Calibri,
+          "Trebuchet MS", sans-serif;
+        color: #cad2c5;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 27.73px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+        transition: text-shadow 0.3s ease;
+      }
+
+      nav .home:hover {
+        text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.6); /* Deeper drop shadow effect */
+      }
+
+      nav ul {
+        display: flex;
+        align-items: center;
+        gap: 63px;
+        list-style: none;
+        margin: 0;
+      }
+
+      nav ul li a {
+        color: #cad2c5;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Inter, sans-serif;
+        font-size: 27.73px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: text-shadow 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.6); /* Deeper drop shadow effect */
+      }
+
+      .all-text {
+        padding-top: 5%;
+        padding-bottom: 20px;
+      }
+
+      .about-block {
+        background-color: rgba(217, 217, 217, 0.32);
+        width: 100%;
+        height: 100px;
+        margin: 0;
+      }
+
+      .about-title {
+        color: var(--bone-colored-text);
+        font-family: Outfit, sans-serif;
+        font-size: 70px;
+        font-weight: 700;
+        line-height: normal;
+        display: flex;
+        justify-content: center;
+      }
+
+      h3 {
+        color: var(--button-green);
+        font-family: Outfit;
+        font-size: 28.73px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .about-text {
+        color: var(--bone-colored-text);
+        font-family: Montserrat;
+        font-size: 18px;
+        margin-top: 5px;
+      }
     </style>
-</head>
-<body>
-    <h3>hello</h3>
-</body>
+  </head>
+  <body>
+    <header>
+      <div class="wrapper">
+        <nav>
+          <a href="homepage.html" class="home">HOME</a>
+
+          <ul>
+            <li>
+              <a href="homepage.html">Role</a>
+            </li>
+            <li>
+              <a href="resume.html">Resume</a>
+            </li>
+            <li>
+              <a href="about.html">About</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- End of Navigation Bar -->
+      </div>
+    </header>
+
+    <div class="all-text">
+      <div class="wrapper">
+        <div class="about-block">
+          <h2 class="about-title">About Us</h2>
+        </div>
+        <h3>Welcome to Interview.io – Your AI-Powered Interview Coach</h3>
+        <p class="about-text">
+          At Interview.io, we understand the butterflies in your stomach before
+          an important job interview. That's why we've created a unique platform
+          that combines the power of artificial intelligence with the nuanced
+          demands of job interviews, offering a personalized experience to help
+          you shine in your next interview.
+        </p>
+
+        <h3>Our Story</h3>
+        <p class="about-text">
+          We are a team of university students, just like you, navigating the
+          challenging terrain of job hunting and internship applications. We
+          know firsthand the nerves that come with preparing for interviews,
+          especially when faced with a variety of roles and industries. That's
+          where Interview.io was born – out of our own need for a comprehensive,
+          yet easy-to-use, interview preparation tool.
+        </p>
+
+        <h3>What We Offer</h3>
+        <p class="about-text">
+          Interview.io is more than just a mock interview platform. It's a
+          cutting-edge AI simulator designed to offer custom interview questions
+          tailored to your target job. Here's how it works:
+        </p>
+        <ol>
+          <li>
+            <h3>Submit Your Resume:</h3>
+            <p class="about-text">
+              Upload your resume, along with the job description and title of
+              the position you're aiming for.
+            </p>
+          </li>
+          <li>
+            <h3>Receive Custom Questions:</h3>
+            <p class="about-text">
+              Our AI analyzes your submission and generates interview questions
+              specific to the role you desire.
+            </p>
+          </li>
+          <li>
+            <h3>Practice with Real-Time Feedback:</h3>
+            <p class="about-text">
+              Conduct your mock interview verbally. Our AI listens, analyzes
+              your responses, and provides instant feedback on how you can
+              improve – not just what you say, but how you say it.
+            </p>
+          </li>
+        </ol>
+        <h3>Our Mission</h3>
+        <p class="about-text">
+          Our mission is simple yet profound: to empower young graduates and job
+          seekers with the confidence and skills needed to ace their interviews.
+          We believe that practice makes perfect, and real-time feedback is key
+          to mastering the art of interviews.
+        </p>
+
+        <h3>Join the Confidence Revolution</h3>
+        <p class="about-text">
+          Whether you're a fresh graduate stepping into the professional world
+          or a student seeking your dream internship, Interview.io is here to
+          help you become interview-ready. It's more than preparation; it's
+          about gaining the confidence to express your best self.
+        </p>
+
+        <h3>Ready to Ace Your Next Interview?</h3>
+        <p class="about-text" style="padding-bottom: 8%">
+          Start your journey with Interview.io today and take the first step
+          towards interview mastery!
+        </p>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const nav = document.querySelector("nav");
+        const navTop = nav.offsetTop;
+
+        /* Navigation Animations */
+
+        function handleNavScroll() {
+          if (window.scrollY > navTop) {
+            nav.style.opacity = 0; // Adjust as needed for desired fade level
+          } else {
+            nav.style.opacity = 1;
+          }
+        }
+
+        function handleNavHover() {
+          nav.style.opacity = 1;
+        }
+
+        function handleNavMouseLeave() {
+          if (window.scrollY > navTop) {
+            nav.style.opacity = 0; // Revert to faded state when mouse leaves
+          }
+        }
+
+        window.addEventListener("scroll", handleNavScroll);
+        nav.addEventListener("mouseover", handleNavHover);
+        nav.addEventListener("mouseleave", handleNavMouseLeave);
+      });
+    </script>
+  </body>
 </html>
