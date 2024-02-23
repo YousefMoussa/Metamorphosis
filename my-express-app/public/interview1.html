@@ -134,7 +134,9 @@
             fetch('output_1.json')
               .then(response => response.json())
               .then(json => {
-                dataText = json; // Assign the JSON content to dataText
+                dataText = JSON.stringify(json); // Convert JSON to a string
+                dataText = dataText.replace(/\/n/g, ''); // Remove newline characters
+                dataText = JSON.parse(dataText); // Convert the modified string back to JSON
                 startTextAnimation(0); // Start the animation
               })
               .catch(error => console.error('Error loading JSON:', error));
@@ -263,20 +265,35 @@
       }
 
       function downloadRecording() {
-        const blob = new Blob(recordedChunks, { type: 'video/webm' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        document.body.appendChild(a);
-        a.style = 'display: none';
-        a.href = url;
-        a.download = 'AnswerRecording1.mp4'; // Changed file name
-        a.click();
-        window.URL.revokeObjectURL(url);
-        // Send a request to the server to run the Python script
-        //fetch('/run-python-script1', { method: 'POST' })
-        //fetch('/run-demogpt', { method: 'POST' })
-        fetch('/run-1st', { method: 'POST' })
-        window.location.href = 'interview2.html';
+          const blob = new Blob(recordedChunks, { type: 'video/webm' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          document.body.appendChild(a);
+          a.style = 'display: none';
+          a.href = url;
+          a.download = 'AnswerRecording1.mp4'; // Changed file name
+          a.click();
+          window.URL.revokeObjectURL(url);
+
+          // Send a request to the server to run the first Python script
+          fetch('/run-python-script1', { method: 'POST' })
+          .then(response => {
+              if (response.ok) {
+                  // After the first script completes, run the second script
+                  return fetch('/run-1st', { method: 'POST' });
+              } else {
+                  throw new Error('First script did not complete successfully');
+              }
+          })
+          .then(response => {
+              if (response.ok) {
+                  // Redirect after the second script completes
+                  window.location.href = 'interview2.html';
+              } else {
+                  throw new Error('Second script did not complete successfully');
+              }
+          })
+          .catch(error => console.error('Error:', error));
       }
     });
     </script>

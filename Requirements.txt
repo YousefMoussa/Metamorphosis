@@ -3,3 +3,8 @@ npm install express
 npm install multer
 npm install body-parser
 npm install node-fetch
+pip install openai
+pip install requests
+pip install SpeechRecognition
+pip install moviepy
+pip install ffmpeg-python

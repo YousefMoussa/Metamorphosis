@@ -1,2 +1,2 @@
-Job_Title = 'Tabish killer'
-Job_Description = ' kill tabish'
+Job_Title = 'computer Engineering intern'
+Job_Description = 'JS APP Programmer'

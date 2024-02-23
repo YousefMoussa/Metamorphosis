@@ -358,7 +358,7 @@
               <h1>Question:</h1>
             </div>
             <div class="question">
-              <h1>Tell me a little about yourself and your background.</h1>
+              <!--<h1>Tell me a little about yourself and your background.</h1>-->
             </div>
           </div>
           <div class="question-right">
@@ -558,7 +558,157 @@
         const navTop = nav.offsetTop;
         let currentIndex = 0;
 
-        /* Navigation Animations */
+        /* Load JSON File */
+
+        function LoadJSON(){
+          fetch('FinalData.json')
+            .then(response => response.json())
+            .then(data=> {
+              window.Q1Technical = data[0]["Technical Skills and Knowledge"][1];
+              window.Q1Critical = data[0]["Critical Thinking"][1];
+              window.Q1Communication = data[0]["Communication Skills"][1];
+              window.Q1Teamwork = data[0]["Teamwork and Adaptability"][1];
+              window.Q1TechnicalVal = data[0]["Technical Skills and Knowledge"][0];
+              window.Q1CriticalVal = data[0]["Communication Skills"][0];
+              window.Q1CommunicationVal = data[0]["Communication Skills"][0];
+              window.Q1TeamworkVal = data[0]["Teamwork and Adaptability"][0];
+
+              window.Q2Technical = data[1]["Technical Skills and Knowledge"][1];
+              window.Q2Critical = data[1]["Critical Thinking"][1];
+              window.Q2Communication = data[1]["Communication Skills"][1];
+              window.Q2Teamwork = data[1]["Teamwork and Adaptability"][1];
+              window.Q2TechnicalVal = data[1]["Technical Skills and Knowledge"][0];
+              window.Q2CriticalVal = data[1]["Communication Skills"][0];
+              window.Q2CommunicationVal = data[1]["Communication Skills"][0];
+              window.Q2TeamworkVal = data[1]["Teamwork and Adaptability"][0];
+
+              window.Q3Technical = data[2]["Technical Skills and Knowledge"][1];
+              window.Q3Critical = data[2]["Critical Thinking"][1];
+              window.Q3Communication = data[2]["Communication Skills"][1];
+              window.Q3Teamwork = data[2]["Teamwork and Adaptability"][1];
+              window.Q3TechnicalVal = data[2]["Technical Skills and Knowledge"][0];
+              window.Q3CriticalVal = data[2]["Communication Skills"][0];
+              window.Q3CommunicationVal = data[2]["Communication Skills"][0];
+              window.Q3TeamworkVal = data[2]["Teamwork and Adaptability"][0];
+
+              window.Q4Technical = data[3]["Technical Skills and Knowledge"][1];
+              window.Q4Critical = data[3]["Critical Thinking"][1];
+              window.Q4Communication = data[3]["Communication Skills"][1];
+              window.Q4Teamwork = data[3]["Teamwork and Adaptability"][1];
+              window.Q4TechnicalVal = data[3]["Technical Skills and Knowledge"][0];
+              window.Q4CriticalVal = data[3]["Communication Skills"][0];
+              window.Q4CommunicationVal = data[3]["Communication Skills"][0];
+              window.Q4TeamworkVal = data[3]["Teamwork and Adaptability"][0];
+
+              window.Q5Technical = data[4]["Technical Skills and Knowledge"][1];
+              window.Q5Critical = data[4]["Critical Thinking"][1];
+              window.Q5Communication = data[4]["Communication Skills"][1];
+              window.Q5Teamwork = data[4]["Teamwork and Adaptability"][1];
+              window.Q5TechnicalVal = data[4]["Technical Skills and Knowledge"][0];
+              window.Q5CriticalVal = data[4]["Communication Skills"][0];
+              window.Q5CommunicationVal = data[4]["Communication Skills"][0];
+              window.Q5TeamworkVal = data[4]["Teamwork and Adaptability"][0];
+
+              window.Q6Technical = data[5]["Technical Skills and Knowledge"][1];
+              window.Q6Critical = data[5]["Critical Thinking"][1];
+              window.Q6Communication = data[5]["Communication Skills"][1];
+              window.Q6Teamwork = data[5]["Teamwork and Adaptability"][1];
+              window.Q6TechnicalVal = data[5]["Technical Skills and Knowledge"][0];
+              window.Q6CriticalVal = data[5]["Communication Skills"][0];
+              window.Q6CommunicationVal = data[5]["Communication Skills"][0];
+              window.Q6TeamworkVal = data[5]["Teamwork and Adaptability"][0];
+
+              let AnalysisParagraph = document.querySelectorAll('.analysis-paragraph');
+              // Loop through each element and apply different statements based on the index
+              AnalysisParagraph.forEach((paragraph, index) => {
+                if (index === 0) {
+                  Q4Technical= JSON.stringify(Q4Technical); // Convert JSON to a string
+                  Q4Technical= Q4Technical.replace(/\/n/g, ''); // Remove newline characters
+                  Q4Technical= JSON.parse(Q4Technical); // Convert the modified string back to JSON
+                  paragraph.textContent = Q4Technical;
+                } else if (index === 1) {
+                  Q4Critical= JSON.stringify(Q4Critical); // Convert JSON to a string
+                  Q4Critical= Q4Critical.replace(/\/n/g, ''); // Remove newline characters
+                  Q4Critical= JSON.parse(Q4Critical); // Convert the modified string back to JSON
+                  paragraph.textContent = Q4Critical;
+                } else if (index === 2) {
+                  Q4Communication= JSON.stringify(Q4Communication); // Convert JSON to a string
+                  Q4Communication= Q4Communication.replace(/\/n/g, ''); // Remove newline characters
+                  Q4Communication= JSON.parse(Q4Communication); // Convert the modified string back to JSON
+                  paragraph.textContent = Q4Communication;
+                } else if (index === 3) {
+                  Q4Teamwork= JSON.stringify(Q4Teamwork); // Convert JSON to a string
+                  Q4Teamwork= Q4Teamwork.replace(/\/n/g, ''); // Remove newline characters
+                  Q4Teamwork= JSON.parse(Q4Teamwork); // Convert the modified string back to JSON
+                  paragraph.textContent = Q4Teamwork;
+                }
+              });
+            
+              /* Progress counter animation code */
+
+              window.TechnicalVal = (Q4TechnicalVal*10);
+              window.CriticalVal = (Q4CriticalVal*10);
+              window.CommunicationVal = (Q4CommunicationVal*10);
+              window.TeamworkVal = (Q4TeamworkVal*10);
+              if(TeamworkVal == 0){
+                TeamworkVal +=1;
+              }
+              if(CommunicationVal == 0){
+                CommunicationVal +=1;
+              }
+              if(TechnicalVal == 0){
+                TechnicalVal +=1;
+              }
+              if(CriticalVal == 0){
+                CriticalVal +=1;
+              }
+              console.log(TeamworkVal);
+              window.Percentages = [TechnicalVal, CriticalVal, CommunicationVal, TeamworkVal];
+
+              document
+                .querySelectorAll(".circular-progress")
+                .forEach((progressBar, index) => {
+                  let progressValue = progressBar.querySelector(".progress-value");
+                  let progressStartValue = 0;
+                  let progressEndValue = Percentages[index];
+                  let speed = 30;
+
+                  let progress = setInterval(() => {
+                    progressStartValue++;
+                    progressValue.textContent = `${progressStartValue}%`;
+                    progressBar.style.background = `conic-gradient(${getComputedStyle(
+                      document.documentElement
+                    ).getPropertyValue("--button-green")} ${
+                      progressStartValue * 3.6
+                    }deg, ${getComputedStyle(
+                      document.documentElement
+                    ).getPropertyValue("--back-of-counter")} 0deg)`;
+
+                    if (progressStartValue == progressEndValue) {
+                      clearInterval(progress);
+                    }
+                  }, speed);
+                });
+              })
+            .catch(error => console.error('Error Loading JSON: ', error));
+            
+        }
+        LoadJSON();
+
+        /* Load Question */
+        function LoadQuestion(){
+          fetch('output_4.json')
+            .then(response => response.json())
+            .then(data =>{
+              let questionElement = document.querySelector('.question');
+              let Qust1 = JSON.stringify(data[0]); // Convert JSON to a string
+              Qust1 = Qust1.replace(/\/n/g, ''); // Remove newline characters
+              Qust1 = JSON.parse(Qust1); // Convert the modified string back to JSON
+              questionElement.innerHTML = "<h1>" + Qust1 + "</h1>";
+            })
+            .catch(error => console.error('Error Loading JSON: ', error));
+        }
+        LoadQuestion();  
 
         function handleNavScroll() {
           if (window.scrollY > navTop) {
@@ -662,33 +812,18 @@
         // Run the function on load and on window resize
         window.onload = adjustFontSize;
         window.onresize = adjustFontSize;
+        
+        const nextQuestionButton = document.querySelector('.next-question');
 
-        /* Progress counter animation code */
+        // Define the event handler function
+        function handleNextQuestion() {
+          console.log('Moving to the next question...');
+          window.location.href = 'results-and-counter5.html';
+        }
 
-        document
-          .querySelectorAll(".circular-progress")
-          .forEach((progressBar, index) => {
-            let progressValue = progressBar.querySelector(".progress-value");
-            let progressStartValue = 0;
-            let progressEndValue = [90, 75, 60, 45][index];
-            let speed = 30;
+        // Attach the event handler to the button
+        nextQuestionButton.addEventListener('click', handleNextQuestion);
 
-            let progress = setInterval(() => {
-              progressStartValue++;
-              progressValue.textContent = `${progressStartValue}%`;
-              progressBar.style.background = `conic-gradient(${getComputedStyle(
-                document.documentElement
-              ).getPropertyValue("--button-green")} ${
-                progressStartValue * 3.6
-              }deg, ${getComputedStyle(
-                document.documentElement
-              ).getPropertyValue("--back-of-counter")} 0deg)`;
-
-              if (progressStartValue == progressEndValue) {
-                clearInterval(progress);
-              }
-            }, speed);
-          });
       });
     </script>
   </body>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Results and Counter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --icon-green: #51815b;
+        --back-of-counter: rgba(202, 210, 197, 0.69);
+        --middle-of-counter: #9aa19a;
+        --button-green: #84a98c;
+        --title-green: #8cd867;
+        --bone-colored-text: #cad2c5;
+        --black: #000000;
+        --percent-color: #252424d6;
+      }
+
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Outfit, sans-serif;
+        background: url(picture.jpg) center center fixed;
+      }
+
+      /* Button */
+
+      .next-question {
+        margin: 5px;
+        /*padding: 10px;*/
+        width: 206px;
+        height: 73px;
+        display: inline-block;
+        font-size: 28px;
+        text-decoration: none;
+        text-align: center;
+        background-color: #84a98c;
+        color: #bcd0c0;
+        border: none;
+        border-radius: 95px;
+        cursor: pointer;
+        font-family: "Outfit", sans-serif;
+        letter-spacing: 7%;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+
+      header {
+        padding-bottom: 0;
+        padding-top: 2vh;
+      }
+
+      .wrapper .analysis-wrapper {
+        margin-top: 0px;
+      }
+
+      .wrapper {
+        max-width: 1148px;
+        margin: 0 auto;
+      }
+
+      /* Navbar */
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 1148px;
+        z-index: 100;
+        transition: opacity 0.5s ease;
+      }
+
+      nav .home {
+        text-decoration: none;
+        display: flex;
+        justify-content: space-around;
+        font-family: Outfit, "Montserrat", "Gill Sans", "Gill Sans MT", Calibri,
+          "Trebuchet MS", sans-serif;
+        color: #cad2c5;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 27.73px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+        transition: text-shadow 0.3s ease;
+      }
+
+      nav .home:hover {
+        text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.6); /* Deeper drop shadow effect */
+      }
+
+      nav ul {
+        display: flex;
+        align-items: center;
+        gap: 63px;
+        list-style: none;
+        margin: 0;
+      }
+
+      nav ul li a {
+        color: #cad2c5;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Inter, sans-serif;
+        font-size: 27.73px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: text-shadow 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.6); /* Deeper drop shadow effect */
+      }
+
+      /* Question Section */
+
+      .question-section {
+        display: flex;
+        height: auto;
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 60px;
+      }
+
+      .question-section .question-left h1 {
+        color: #cad2c5;
+        font-family: Outfit, sans-serif;
+        font-size: 70px;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: 0;
+      }
+
+      .question-section .question-left .question-title {
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+
+      .question-section .question-left .question {
+        margin-top: 0;
+      }
+
+      .question-section .question-left {
+        width: 800px;
+      }
+
+      .question-section .question-right {
+        padding-top: 25%;
+        /* padding-right: 10%; */
+        padding-bottom: 10%;
+      }
+
+      /* Analysis Section */
+
+      h2 {
+        color: #8cd867;
+        text-align: center;
+        text-shadow: 0px 4px 9px rgba(0, 0, 0, 0.3);
+        font-family: Outfit;
+        font-size: 70px;
+        font-weight: 700;
+      }
+
+      .carousel-container {
+        overflow: hidden;
+        width: 100%; /* Adjust as per your layout */
+      }
+
+      .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .carousel-item,
+      .analysis-block {
+        /* Treat analysis blocks as carousel items */
+        min-width: 100%; /* Ensure each item takes full width of the container */
+        box-sizing: border-box;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .graphic {
+        background-color: var(--button-green);
+        border-radius: 20px;
+        padding: 20px;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+      }
+
+      .analysis-block carousel-container {
+        display: flex;
+      }
+
+      .analysis-text {
+        width: 82.67%;
+        height: auto;
+      }
+
+      .analysis-category {
+        color: var(--button-green);
+        font-family: Outfit;
+        font-size: 28.73px;
+        text-transform: uppercase;
+        margin-top: 20px;
+        margin-bottom: 5px;
+      }
+
+      .analysis-paragraph {
+        color: var(--bone-colored-text);
+        font-family: Montserrat;
+        font-size: 21px;
+      }
+
+      @media (max-width: 768px) {
+        /* Adjust breakpoint as needed */
+        .carousel-item {
+          flex-direction: column;
+        }
+        .graphic,
+        .analysis-text {
+          flex-basis: auto; /* Allows the items to determine their own size */
+          width: 100%; /* Full width for smaller screens */
+        }
+      }
+
+      .arrows {
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+      }
+
+      .prev-btn,
+      .next-btn {
+        background-color: var(--button-green);
+        border-radius: 50%;
+        width: 52px;
+        height: 52px;
+        border: none;
+        margin: 0 6px;
+      }
+
+      /* Progress Section */
+
+      .progress-section {
+        padding-bottom: 200px;
+      }
+
+      .circular-progress {
+        position: relative;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--button-green) 3.6deg,
+          var(--middle-of-counter) 0deg
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.388);
+        margin: 5px; /* Add some space around each circular progress */
+        margin-bottom: 15px;
+      }
+
+      .circular-progress::before {
+        content: "";
+        position: absolute;
+        height: 160px;
+        width: 160px;
+        border-radius: 50%;
+        box-shadow: inset 0px 6px 9px rgba(0, 0, 0, 0.388);
+        background-color: var(--middle-of-counter);
+      }
+
+      .progress-value {
+        position: relative;
+        font-size: 30px;
+        font-weight: 600;
+        color: var(--percent-color);
+      }
+
+      .counter-label {
+        font-size: 20px;
+        font-weight: 900;
+        color: var(--button-green);
+        margin-top: 30px;
+        text-align: center;
+        width: 100%;
+        /*padding: 0 10px;*/
+        box-sizing: border-box;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+
+      /* Ensure the counters wrap on smaller screens */
+      .counters {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        overflow-x: auto;
+      }
+
+      .counter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 200px;
+        margin: 40px;
+      }
+
+      .counter-bg {
+        background-color: var(--middle-of-counter);
+        border-radius: 20px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrapper">
+        <nav>
+          <a href="homepage.html" class="home">HOME</a>
+
+          <ul>
+            <li>
+              <a href="homepage.html">Role</a>
+            </li>
+            <li>
+              <a href="resume.html">Resume</a>
+            </li>
+            <li>
+              <a href="about.html">About</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- End of Navigation Bar -->
+
+        <div class="question-section">
+          <div class="question-left">
+            <div class="question-title">
+              <h1>Question:</h1>
+            </div>
+            <div class="question">
+              <!--<h1>Tell me a little about yourself and your background.</h1>-->
+            </div>
+          </div>
+          <div class="question-right">
+            <button class="next-question">NEXT QUESTION</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- End of Header/Question Section -->
+
+    <div class="wrapper">
+      <section class="analysis-wrapper">
+        <h2>Analysis</h2>
+        <div class="carousel-container">
+          <div class="carousel-wrapper">
+            <div class="analysis-block carousel-item">
+              <div class="graphic">
+                <img
+                  src="images/tech.svg"
+                  alt="Technical Skills and Knowledge"
+                />
+              </div>
+              <div class="analysis-text">
+                <h3 class="analysis-category">
+                  TECHNICAL SKILLS AND KNOWLEDGE:
+                </h3>
+                <p class="analysis-paragraph">
+                  ullamcorper sit amet risus nullam eget felis eget nunc
+                  lobortis mattis aliquam faucibus purus in massa tempor nec
+                  feugiat nisl pretium fusce id velit ut tortor pretium viverra
+                  suspendisse potenti nullam ac tortor vitae purus faucibus
+                  ornare suspendisse sed nisi lacus sed viverra tellus in hac
+                  habitasse platea dictumst vestibulum rhoncus est pellentesque
+                  elit ullamcorper dignissim cras tincidunt lobortis feugiat
+                  vivamus at augue eget arcu dictum varius duis at consectetur
+                  lorem donec massa sapien faucibus et molestie ac feugiat sed
+                  lectus vestibulum mattis ullamcorper velit sed ullamcorper
+                  morbi tincidunt ornare massa eget egestas purus viverra
+                  accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu
+                  augue ut lectus arcu bibendum at varius vel pharetra vel
+                  turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet
+                  bibendum enim facilisis gravida neque convallis a cras semper
+                  auctor neque vitae tempus quam pellentesque nec nam aliquam
+                  sem et tortor consequat id porta nibh
+                </p>
+              </div>
+            </div>
+            <div class="analysis-block carousel-item">
+              <div class="graphic">
+                <img src="images/crit.svg" alt="Critical Thinking" />
+              </div>
+              <div class="analysis-text">
+                <h3 class="analysis-category">CRITICAL THINKING:</h3>
+                <p class="analysis-paragraph">
+                  ullamcorper sit amet risus nullam eget felis eget nunc
+                  lobortis mattis aliquam faucibus purus in massa tempor nec
+                  feugiat nisl pretium fusce id velit ut tortor pretium viverra
+                  suspendisse potenti nullam ac tortor vitae purus faucibus
+                  ornare suspendisse sed nisi lacus sed viverra tellus in hac
+                  habitasse platea dictumst vestibulum rhoncus est pellentesque
+                  elit ullamcorper dignissim cras tincidunt lobortis feugiat
+                  vivamus at augue eget arcu dictum varius duis at consectetur
+                  lorem donec massa sapien faucibus et molestie ac feugiat sed
+                  lectus vestibulum mattis ullamcorper velit sed ullamcorper
+                  morbi tincidunt ornare massa eget egestas purus viverra
+                  accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu
+                  augue ut lectus arcu bibendum at varius vel pharetra vel
+                  turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet
+                  bibendum enim facilisis gravida neque convallis a cras semper
+                  auctor neque vitae tempus quam pellentesque nec nam aliquam
+                  sem et tortor consequat id porta nibh
+                </p>
+              </div>
+            </div>
+            <div class="analysis-block carousel-item">
+              <div class="graphic">
+                <img src="images/comm.svg" alt="Communication Skills" />
+              </div>
+              <div class="analysis-text">
+                <h3 class="analysis-category">COMMUNICATION SKILLS:</h3>
+                <p class="analysis-paragraph">
+                  ullamcorper sit amet risus nullam eget felis eget nunc
+                  lobortis mattis aliquam faucibus purus in massa tempor nec
+                  feugiat nisl pretium fusce id velit ut tortor pretium viverra
+                  suspendisse potenti nullam ac tortor vitae purus faucibus
+                  ornare suspendisse sed nisi lacus sed viverra tellus in hac
+                  habitasse platea dictumst vestibulum rhoncus est pellentesque
+                  elit ullamcorper dignissim cras tincidunt lobortis feugiat
+                  vivamus at augue eget arcu dictum varius duis at consectetur
+                  lorem donec massa sapien faucibus et molestie ac feugiat sed
+                  lectus vestibulum mattis ullamcorper velit sed ullamcorper
+                  morbi tincidunt ornare massa eget egestas purus viverra
+                  accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu
+                  augue ut lectus arcu bibendum at varius vel pharetra vel
+                  turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet
+                  bibendum enim facilisis gravida neque convallis a cras semper
+                  auctor neque vitae tempus quam pellentesque nec nam aliquam
+                  sem et tortor consequat id porta nibh
+                </p>
+              </div>
+            </div>
+            <div class="analysis-block carousel-item">
+              <div class="graphic">
+                <img
+                  src="images/teamwork.svg"
+                  alt="Teamwork and Adaptability"
+                />
+              </div>
+              <div class="analysis-text">
+                <h3 class="analysis-category">TEAMWORK AND ADAPTABILITY:</h3>
+                <p class="analysis-paragraph">
+                  ullamcorper sit amet risus nullam eget felis eget nunc
+                  lobortis mattis aliquam faucibus purus in massa tempor nec
+                  feugiat nisl pretium fusce id velit ut tortor pretium viverra
+                  suspendisse potenti nullam ac tortor vitae purus faucibus
+                  ornare suspendisse sed nisi lacus sed viverra tellus in hac
+                  habitasse platea dictumst vestibulum rhoncus est pellentesque
+                  elit ullamcorper dignissim cras tincidunt lobortis feugiat
+                  vivamus at augue eget arcu dictum varius duis at consectetur
+                  lorem donec massa sapien faucibus et molestie ac feugiat sed
+                  lectus vestibulum mattis ullamcorper velit sed ullamcorper
+                  morbi tincidunt ornare massa eget egestas purus viverra
+                  accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu
+                  augue ut lectus arcu bibendum at varius vel pharetra vel
+                  turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet
+                  bibendum enim facilisis gravida neque convallis a cras semper
+                  auctor neque vitae tempus quam pellentesque nec nam aliquam
+                  sem et tortor consequat id porta nibh
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="arrows">
+          <button class="prev-btn">
+            <img src="images/left-arrow.svg" alt="Previous" />
+          </button>
+          <button class="next-btn">
+            <img src="images/right-arrow.svg" alt="Next" />
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- End of Analysis Section -->
+
+    <div class="wrapper">
+      <section class="progress-section">
+        <h2>Progress</h2>
+        <div class="counters">
+          <div class="counter">
+            <div class="counter-bg">
+              <div class="circular-progress">
+                <span class="progress-value">0%</span>
+              </div>
+            </div>
+            <span class="counter-label">TECHNICAL SKILLS AND KNOWLEDGE:</span>
+          </div>
+          <div class="counter">
+            <div class="counter-bg">
+              <div class="circular-progress">
+                <span class="progress-value">0%</span>
+              </div>
+            </div>
+            <span class="counter-label">CRITICAL THINKING:</span>
+          </div>
+          <div class="counter">
+            <div class="counter-bg">
+              <div class="circular-progress">
+                <span class="progress-value">0%</span>
+              </div>
+            </div>
+            <span class="counter-label">COMMUNICATION SKILLS:</span>
+          </div>
+          <div class="counter">
+            <div class="counter-bg">
+              <div class="circular-progress">
+                <span class="progress-value">0%</span>
+              </div>
+            </div>
+            <span class="counter-label">TEAMWORK AND ADAPTABILITY:</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- End of Progress Section -->
+
+    <!-- Javascript Code -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const carouselWrapper = document.querySelector(".carousel-wrapper");
+        const totalItems = document.querySelectorAll(".carousel-item").length;
+        const nav = document.querySelector("nav");
+        const navTop = nav.offsetTop;
+        let currentIndex = 0;
+
+        /* Load JSON File */
+
+        function LoadJSON(){
+          fetch('FinalData.json')
+            .then(response => response.json())
+            .then(data=> {
+              window.Q1Technical = data[0]["Technical Skills and Knowledge"][1];
+              window.Q1Critical = data[0]["Critical Thinking"][1];
+              window.Q1Communication = data[0]["Communication Skills"][1];
+              window.Q1Teamwork = data[0]["Teamwork and Adaptability"][1];
+              window.Q1TechnicalVal = data[0]["Technical Skills and Knowledge"][0];
+              window.Q1CriticalVal = data[0]["Communication Skills"][0];
+              window.Q1CommunicationVal = data[0]["Communication Skills"][0];
+              window.Q1TeamworkVal = data[0]["Teamwork and Adaptability"][0];
+
+              window.Q2Technical = data[1]["Technical Skills and Knowledge"][1];
+              window.Q2Critical = data[1]["Critical Thinking"][1];
+              window.Q2Communication = data[1]["Communication Skills"][1];
+              window.Q2Teamwork = data[1]["Teamwork and Adaptability"][1];
+              window.Q2TechnicalVal = data[1]["Technical Skills and Knowledge"][0];
+              window.Q2CriticalVal = data[1]["Communication Skills"][0];
+              window.Q2CommunicationVal = data[1]["Communication Skills"][0];
+              window.Q2TeamworkVal = data[1]["Teamwork and Adaptability"][0];
+
+              window.Q3Technical = data[2]["Technical Skills and Knowledge"][1];
+              window.Q3Critical = data[2]["Critical Thinking"][1];
+              window.Q3Communication = data[2]["Communication Skills"][1];
+              window.Q3Teamwork = data[2]["Teamwork and Adaptability"][1];
+              window.Q3TechnicalVal = data[2]["Technical Skills and Knowledge"][0];
+              window.Q3CriticalVal = data[2]["Communication Skills"][0];
+              window.Q3CommunicationVal = data[2]["Communication Skills"][0];
+              window.Q3TeamworkVal = data[2]["Teamwork and Adaptability"][0];
+
+              window.Q4Technical = data[3]["Technical Skills and Knowledge"][1];
+              window.Q4Critical = data[3]["Critical Thinking"][1];
+              window.Q4Communication = data[3]["Communication Skills"][1];
+              window.Q4Teamwork = data[3]["Teamwork and Adaptability"][1];
+              window.Q4TechnicalVal = data[3]["Technical Skills and Knowledge"][0];
+              window.Q4CriticalVal = data[3]["Communication Skills"][0];
+              window.Q4CommunicationVal = data[3]["Communication Skills"][0];
+              window.Q4TeamworkVal = data[3]["Teamwork and Adaptability"][0];
+
+              window.Q5Technical = data[4]["Technical Skills and Knowledge"][1];
+              window.Q5Critical = data[4]["Critical Thinking"][1];
+              window.Q5Communication = data[4]["Communication Skills"][1];
+              window.Q5Teamwork = data[4]["Teamwork and Adaptability"][1];
+              window.Q5TechnicalVal = data[4]["Technical Skills and Knowledge"][0];
+              window.Q5CriticalVal = data[4]["Communication Skills"][0];
+              window.Q5CommunicationVal = data[4]["Communication Skills"][0];
+              window.Q5TeamworkVal = data[4]["Teamwork and Adaptability"][0];
+
+              window.Q6Technical = data[5]["Technical Skills and Knowledge"][1];
+              window.Q6Critical = data[5]["Critical Thinking"][1];
+              window.Q6Communication = data[5]["Communication Skills"][1];
+              window.Q6Teamwork = data[5]["Teamwork and Adaptability"][1];
+              window.Q6TechnicalVal = data[5]["Technical Skills and Knowledge"][0];
+              window.Q6CriticalVal = data[5]["Communication Skills"][0];
+              window.Q6CommunicationVal = data[5]["Communication Skills"][0];
+              window.Q6TeamworkVal = data[5]["Teamwork and Adaptability"][0];
+
+              let AnalysisParagraph = document.querySelectorAll('.analysis-paragraph');
+              // Loop through each element and apply different statements based on the index
+              AnalysisParagraph.forEach((paragraph, index) => {
+                if (index === 0) {
+                  Q5Technical= JSON.stringify(Q5Technical); // Convert JSON to a string
+                  Q5Technical= Q5Technical.replace(/\/n/g, ''); // Remove newline characters
+                  Q5Technical= JSON.parse(Q5Technical); // Convert the modified string back to JSON
+                  paragraph.textContent = Q5Technical;
+                } else if (index === 1) {
+                  Q5Critical= JSON.stringify(Q5Critical); // Convert JSON to a string
+                  Q5Critical= Q5Critical.replace(/\/n/g, ''); // Remove newline characters
+                  Q5Critical= JSON.parse(Q5Critical); // Convert the modified string back to JSON
+                  paragraph.textContent = Q5Critical;
+                } else if (index === 2) {
+                  Q5Communication= JSON.stringify(Q5Communication); // Convert JSON to a string
+                  Q5Communication= Q5Communication.replace(/\/n/g, ''); // Remove newline characters
+                  Q5Communication= JSON.parse(Q5Communication); // Convert the modified string back to JSON
+                  paragraph.textContent = Q5Communication;
+                } else if (index === 3) {
+                  Q5Teamwork= JSON.stringify(Q5Teamwork); // Convert JSON to a string
+                  Q5Teamwork= Q5Teamwork.replace(/\/n/g, ''); // Remove newline characters
+                  Q5Teamwork= JSON.parse(Q5Teamwork); // Convert the modified string back to JSON
+                  paragraph.textContent = Q5Teamwork;
+                }
+              });
+            
+              /* Progress counter animation code */
+
+              window.TechnicalVal = (Q5TechnicalVal*10);
+              window.CriticalVal = (Q5CriticalVal*10);
+              window.CommunicationVal = (Q5CommunicationVal*10);
+              window.TeamworkVal = (Q5TeamworkVal*10);
+              if(TeamworkVal == 0){
+                TeamworkVal +=1;
+              }
+              if(CommunicationVal == 0){
+                CommunicationVal +=1;
+              }
+              if(TechnicalVal == 0){
+                TechnicalVal +=1;
+              }
+              if(CriticalVal == 0){
+                CriticalVal +=1;
+              }
+              console.log(TeamworkVal);
+              window.Percentages = [TechnicalVal, CriticalVal, CommunicationVal, TeamworkVal];
+
+              document
+                .querySelectorAll(".circular-progress")
+                .forEach((progressBar, index) => {
+                  let progressValue = progressBar.querySelector(".progress-value");
+                  let progressStartValue = 0;
+                  let progressEndValue = Percentages[index];
+                  let speed = 30;
+
+                  let progress = setInterval(() => {
+                    progressStartValue++;
+                    progressValue.textContent = `${progressStartValue}%`;
+                    progressBar.style.background = `conic-gradient(${getComputedStyle(
+                      document.documentElement
+                    ).getPropertyValue("--button-green")} ${
+                      progressStartValue * 3.6
+                    }deg, ${getComputedStyle(
+                      document.documentElement
+                    ).getPropertyValue("--back-of-counter")} 0deg)`;
+
+                    if (progressStartValue == progressEndValue) {
+                      clearInterval(progress);
+                    }
+                  }, speed);
+                });
+              })
+            .catch(error => console.error('Error Loading JSON: ', error));
+            
+        }
+        LoadJSON();
+
+        /* Load Question */
+        function LoadQuestion(){
+          fetch('output_5.json')
+            .then(response => response.json())
+            .then(data =>{
+              let questionElement = document.querySelector('.question');
+              let Qust1 = JSON.stringify(data[0]); // Convert JSON to a string
+              Qust1 = Qust1.replace(/\/n/g, ''); // Remove newline characters
+              Qust1 = JSON.parse(Qust1); // Convert the modified string back to JSON
+              questionElement.innerHTML = "<h1>" + Qust1 + "</h1>";
+            })
+            .catch(error => console.error('Error Loading JSON: ', error));
+        }
+        LoadQuestion();  
+
+        function handleNavScroll() {
+          if (window.scrollY > navTop) {
+            nav.style.opacity = 0; // Adjust as needed for desired fade level
+          } else {
+            nav.style.opacity = 1;
+          }
+        }
+
+        function handleNavHover() {
+          nav.style.opacity = 1;
+        }
+
+        function handleNavMouseLeave() {
+          if (window.scrollY > navTop) {
+            nav.style.opacity = 0; // Revert to faded state when mouse leaves
+          }
+        }
+
+        window.addEventListener("scroll", handleNavScroll);
+        nav.addEventListener("mouseover", handleNavHover);
+        nav.addEventListener("mouseleave", handleNavMouseLeave);
+
+        /* Analysis Section Carousel + Next/Prev Buttons */
+
+        function updateCarousel() {
+          const translateValue = -currentIndex * 100 + "%";
+          carouselWrapper.style.transform =
+            "translateX(" + translateValue + ")";
+        }
+
+        function nextSlide() {
+          currentIndex = (currentIndex + 1) % totalItems;
+          if (currentIndex === 0) {
+            // If at the end, instantly jump to the beginning for a smooth loop
+            carouselWrapper.style.transition = "none";
+            currentIndex = 0;
+            updateCarousel();
+            setTimeout(() => {
+              carouselWrapper.style.transition = ""; // Restore transition property
+            }, 0);
+          } else {
+            updateCarousel();
+          }
+        }
+
+        function prevSlide() {
+          currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+          if (currentIndex === totalItems - 1) {
+            // If at the beginning, instantly jump to the end for a smooth loop
+            carouselWrapper.style.transition = "none";
+            currentIndex = totalItems - 1;
+            updateCarousel();
+            setTimeout(() => {
+              carouselWrapper.style.transition = ""; // Restore transition property
+            }, 0);
+          } else {
+            updateCarousel();
+          }
+        }
+
+        // Add event listeners for next and previous buttons
+        document
+          .querySelector(".next-btn")
+          .addEventListener("click", nextSlide);
+        document
+          .querySelector(".prev-btn")
+          .addEventListener("click", prevSlide);
+
+        /* Optional: Auto-looping functionality
+
+           setInterval(() => {
+      nextSlide();
+    }, 3000); // Change the interval (in milliseconds) based on your preference */
+
+        /* Adjusting Analysis Paragraph Font Size */
+
+        function adjustFontSize() {
+          const paragraphs = document.querySelectorAll(".analysis-paragraph");
+
+          paragraphs.forEach((paragraph) => {
+            const containerHeight = paragraph.clientHeight;
+            const containerWidth = paragraph.clientWidth;
+            const textLength = paragraph.textContent.length;
+
+            // Calculate an appropriate font size
+            // This formula is just an example and may need adjustment
+            let fontSize = Math.sqrt(
+              (containerHeight * containerWidth) / textLength
+            );
+
+            // Set a minimum and maximum font size
+            fontSize = Math.max(fontSize, 16); // Minimum font size
+            fontSize = Math.min(fontSize, 21); // Maximum font size
+
+            // Apply the font size
+            paragraph.style.fontSize = `${fontSize}px`;
+          });
+        }
+
+        // Run the function on load and on window resize
+        window.onload = adjustFontSize;
+        window.onresize = adjustFontSize;
+        
+        const nextQuestionButton = document.querySelector('.next-question');
+
+        // Define the event handler function
+        function handleNextQuestion() {
+          console.log('Moving to the next question...');
+          window.location.href = 'results-and-counter6.html';
+        }
+
+        // Attach the event handler to the button
+        nextQuestionButton.addEventListener('click', handleNextQuestion);
+
+      });
+    </script>
+  </body>
+</html>

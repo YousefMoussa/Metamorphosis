@@ -4,7 +4,7 @@ from openai import OpenAI
 client = OpenAI(api_key='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')
 
 def transcribe_video_audio_to_text(video_file):
-    audio_file = "C:\\Hacked_Jan6\\Metamorphosis\\temp_audio1.wav"
+    audio_file = "C:\\Hacked_Jan6\\Metamorphosis\\temp_audio6.wav"
     (
     ffmpeg
     .input(video_file)
@@ -27,8 +27,8 @@ def transcribe_video_audio_to_text(video_file):
         return f"Error: {str(e)}"
 
 def main():
-    video_file = "C:\Hacked_Jan6\Metamorphosis\AnswerRecording1.mp4"
-    text_file = "C:\\Hacked_Jan6\\Metamorphosis\\transcribed_text1.txt"
+    video_file = "C:\Hacked_Jan6\Metamorphosis\AnswerRecording6.mp4"
+    text_file = "C:\\Hacked_Jan6\\Metamorphosis\\transcribed_text6.txt"
 
     transcribed_text = transcribe_video_audio_to_text(video_file)
 

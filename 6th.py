@@ -1,10 +1,9 @@
-import openai
 import requests
-from DetailsAndRole import Job_Title,Job_Description
+from DetailsAndRole import*
 from demogpt import QUESTIONS
-import re
 import json
-openai.api_key = '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'
+import openai
+openai.api_key = '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'
 URL = "https://api.openai.com/v1/chat/completions"
 
 
@@ -46,8 +45,8 @@ def Create(fileA,n):
 def Analyze(answerfile,num):
     payload = {
     "model": "gpt-3.5-turbo",
-    "messages": [{"role": "user", "content": f"The job I have an interview coming up for a '{Job_Title}' role. The job description for this role is '{Job_Description}'. I will provide the answer to the interview question '{QUESTIONS[num]}'. When I give my answer, I want you to asses my answer on the followign parameters and give a score out of 10 for each parameter. the parameters are '{parameters}. When you give me a score, justify it and provide feedback. My answer is '{Create(answerfile,num)}'. Do not include overall scores"}],
-    "temperature" : .2,
+    "messages": [{"role": "user", "content": f"The job I have an interview coming up for a '{Job_Title}' role. The job description for this role is '{Job_Description}'. I will provide the answer to the interview question '{QUESTIONS[num]}'. When I give my answer, I want you to asses my answer on the followign parameters and give a score out of 10 for each parameter.The parameters are '{parameters}.My answer is '{Create(answerfile,num)}'. Give your analysis in a python dictionary, with the parameter as a key, and the value as a list containing the score and justification"}],
+    "temperature" : 0,
     "top_p":1.0,
     "n" : 1,
     "stream": False,
@@ -71,33 +70,60 @@ def Analyze(answerfile,num):
     r_json = response.json()
 
     # Access specific fields in the JSON content
-    g_text = r_json['choices'][0]['message']['content']
+    gp_text = r_json['choices'][0]['message']['content']
+    if gp_text[-3] ==',':
+        g_text = gp_text[:-3] + gp_text[-2:]
+    else:
+        g_text=gp_text
     with open('FinalData.txt', 'a') as file:
-        print('QUESTION: ',QUESTIONS[num], file=file )
         print(g_text,file=file)
+  
 
 
-def text_to_html_list(file_path, output_html):
-    with open(file_path, 'r') as file:
-        lines = file.readlines()
 
-    html_content = '<html><body><ul>\n'
-    
-    for line in lines:
-        if line.strip():  # Check if line is not empty
-            html_content += f'  <li>{line.strip()}</li>\n'
-    
-    html_content += '</ul></body></html>'
+def add_square_brackets(file_path):
+    try:
+        # Step 1: Read the content of the text file
+        with open(file_path, 'r') as file:
+            content = file.read()
 
-    with open(output_html, 'w') as html_file:
-        html_file.write(html_content)
+        # Step 2: Add square brackets to make it a valid JSON array
+        json_content = f"[ \n {content}]"
+
+        # Step 3: Write the modified content back to the same file
+        with open(file_path, 'w') as file:
+            file.write(json_content)
+
+        print("Square brackets added successfully.")
+    except Exception as e:
+        print(f"Error: {e}")
+def add_indentation(file_path):
+    try:
+        # Step 1: Read the content of the text file
+        with open(file_path, 'r') as file:
+            content = file.read()
+
+        # Step 2: Add square brackets to make it a valid JSON array
+        json_content = f"{content}"
+
+        # Step 3: Parse the content as JSON
+        data = json.loads(json_content)
+
+        # Step 4: Write the modified content back to the same file with indentation
+        with open(file_path, 'w') as file:
+            json.dump(data, file, indent=2)  # Adjust the indent as needed
+
+        print("Indentation added successfully.")
+    except Exception as e:
+        print(f"Error: {e}")
 
 # Example usage
-    #overwrites file to make it blank
-    
+
+if __name__=="__main__":
+
     Analyze('C:/Hacked_Jan6/Metamorphosis/transcribed_text6.txt',5)
-    input_file_path = 'path/to/your/textfile.txt'
-    output_html_file = 'C:\Hacked_Jan6\Metamorphosis\my-express-app\public\output.html'
-    text_to_html_list(input_file_path, output_html_file)
-    #scores('C:/Hacked_Jan6/Metamorphosis/FinalData.txt')
-    
+    add_square_brackets('FinalData.txt')
+    add_indentation('FinalData.txt')
+
+    f = open('C:/Hacked_Jan6/Metamorphosis/done.txt', 'w')
+    f.close

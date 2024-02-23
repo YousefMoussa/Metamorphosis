@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            background:url(picture.jpg) center center fixed;
+            
+            background-color: rgba(0,0,0, 0.4);
         }
         .result {
             text-align: center;
@@ -38,32 +39,28 @@
 </head>
 <body>
     <h1 class="result">Summary</h1>
-    <div class="score-container">
-        <div class="score1 score-circle">
-            <h1 id="score1">Technical Skills and Knowledge <br> x/60</h1>
-        </div>
-        <div class="score2 score-circle">
-            <h1 id="score2">Critical Thinking<br> x/60</h1>
-        </div>
-        <div class="score3 score-circle">
-            <h1 id="score3">Communication Skills<br> x/60</h1>
-        </div>
-        <div class="score4 score-circle">
-            <h1 id="score4">Teamwork and Adaptability<br> x/60</h1>
-        </div>
     </div>
+    <input type="file" id="fileInput">
+    <div id="fileContent" class="file-content"></div>
 
     <script>
-        // Fetch JSON data
-        fetch('numbers.json')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('score1').innerText = `Technical Skills and Knowledge\n${data[0]}/60`;
-                document.getElementById('score2').innerText = `Critical Thinking\n${data[1]}/60`;
-                document.getElementById('score3').innerText = `Communication Skills\n${data[2]}/60`;
-                document.getElementById('score4').innerText = `Teamwork and Adaptability\n${data[3]}/60`;
-            })
-            .catch(error => console.error('Error fetching data:', error));
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                // Display file content
+                document.getElementById('fileContent').innerHTML = content
+                    .split('\n')
+                    .map(line => `<p>${line}</p>`)
+                    .join('');
+            };
+            reader.readAsText(file);
+        });
     </script>
 </body>
 </html>

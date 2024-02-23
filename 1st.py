@@ -1,14 +1,12 @@
 import openai
 import requests
-from DetailsAndRole import Job_Title,Job_Description
-from demogpt import QUESTIONS
+from DetailsAndRole import*
+from demogpt import QUESTIONS 
 import re
-import json
-openai.api_key = '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'
+openai.api_key = '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'
 URL = "https://api.openai.com/v1/chat/completions"
 
-
-parameters = """
+"""
 1. Technical Skills and Knowledge:
    - Demonstrated ability to articulate acquired knowledge through concrete examples.
 
@@ -20,6 +18,15 @@ parameters = """
 
 4. Teamwork and Adaptability:
    - Proven ability to collaborate within a team, showcasing adaptability and cooperation to address significant challenges.
+"""
+parameters = """
+1. Technical Skills and Knowledge:
+
+2. Critical Thinking:
+
+3. Communication Skills:
+
+4. Teamwork and Adaptability:
 """
 def Create(fileA,n):
 
@@ -41,12 +48,67 @@ def Create(fileA,n):
         print(f"An error occurred: {e}")
     return content,n
 
-
-
 def Analyze(answerfile,num):
+
+    
     payload = {
     "model": "gpt-3.5-turbo",
-    "messages": [{"role": "user", "content": f"The job I have an interview coming up for a '{Job_Title}' role. The job description for this role is '{Job_Description}'. I will provide the answer to the interview question '{QUESTIONS[num]}'. When I give my answer, I want you to asses my answer on the followign parameters and give a score out of 10 for each parameter. the parameters are '{parameters}. When you give me a score, justify it and provide feedback. My answer is '{Create(answerfile,num)}'. Do not include overall scores,"}],
+    "messages": [{"role": "user", "content": f"The job I have an interview coming up for a '{Job_Title}' role. The job description for this role is '{Job_Description}'. I will provide the answer to the interview question '{QUESTIONS[num]}'. When I give my answer, I want you to asses my answer on the followign parameters and give a score out of 10 for each parameter.The parameters are '{parameters}.My answer is '{Create(answerfile,num)}'. Give your analysis in a python dictionary, with the parameter as a key, and the value as a list containing the score and justification"}],
+    "temperature" : 0,
+    "top_p":1.0,
+    "n" : 1,
+    "stream": False,
+    "presence_penalty":0,
+    "frequency_penalty":0,
+    
+    }
+    headers = {
+    "Content-Type": "application/json",
+    "Authorization": f"Bearer {openai.api_key}"
+    }
+
+    response = requests.post(URL, headers=headers, json=payload,stream=True)
+
+
+    if response.status_code == 200:
+        pass
+    else:
+        print(f"Error: HTTP {response.status_code} - {response.text}")
+
+    r_json = response.json()
+
+    # Access specific fields in the JSON content
+    gp_text = r_json['choices'][0]['message']['content']
+    if gp_text[-3] ==',':
+        g_text = gp_text[:-3] + gp_text[-2:]
+    else:
+        g_text=gp_text
+    with open('FinalData.txt', 'w') as file:
+        print(g_text,file=file)
+        print(',',file=file)
+'''
+def scores(FatFile):
+    with open(FatFile, 'r') as file:
+        file_content = file.read()
+
+        # Define a regular expression pattern to match the score
+        score_pattern = r"(\d+)/10"
+
+        # Find all matches in the file content
+        score_matche = re.findall(score_pattern, file_content)
+        if len(score_matche) < 4:
+             Scores = ['0','0','0','0']
+        elif len(score_matche) == 5:
+            score_matche.pop()
+            Scores=score_matche
+        else: Scores=score_matche
+            
+    return Scores
+
+def STAR(answerfile,num):
+    payload = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": f"I will provide the answer to the interview question '{QUESTIONS[num]}'. When I give my answer, I want you to asses my answer on these parameters. '{parameters}'.Then give feedback in one short paragraph per parameter. My answer is '{Create(answerfile,num)}'."}],
     "temperature" : .2,
     "top_p":1.0,
     "n" : 1,
@@ -72,40 +134,11 @@ def Analyze(answerfile,num):
 
     # Access specific fields in the JSON content
     g_text = r_json['choices'][0]['message']['content']
-    with open('FinalData.txt', 'a') as file:
+    g_text=[g_text]
+    with open('STAR.txt', 'w') as file:
         print('QUESTION: ',QUESTIONS[num], file=file )
         print(g_text,file=file)
-
-def scores(FatFile):
-    with open(FatFile, 'r') as file:
-        file_content = file.read()
-
-        # Define a regular expression pattern to match the score
-        score_pattern = r"(\d+)/10"
-
-        # Find all matches in the file content
-        score_matches = re.findall(score_pattern, file_content)
-        score_matches= [int(score) for score in score_matches]
-        array4=[score_matches[0:4],score_matches[4:8],score_matches[8:12],score_matches[12:16],score_matches[16:20],score_matches[20:]]
-        # Convert the matched strings to integers and append to a list
-
-
-        # Print the extracted scores
-        sum1 = sum(row[0] for row in array4)
-        sum2 = sum(row[1] for row in array4)
-        sum3 = sum(row[2] for row in array4)
-        sum4 = sum(row[3] for row in array4)
-        sums=[sum1,sum2,sum3,sum4]
-        for i in range(4):
-        # Construct a unique filename for each string
-            filename = f'average_{i + 1}.json'
-            jstring = json.dumps([str(sum1)], indent=2)
-            with open(filename, 'w') as json_file:
-
-                json_file.write((jstring))
+'''    
 if __name__=="__main__":
-    #overwrites file to make it blank
-    with open('FinalData.txt', 'w') as file:
-        print(' ',file=file )
     Analyze('C:/Hacked_Jan6/Metamorphosis/transcribed_text1.txt',0)
-    
+        

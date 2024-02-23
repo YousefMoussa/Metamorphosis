@@ -5,7 +5,7 @@ const multer = require('multer');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const { spawn } = require('child_process');
-const port = 3000;
+const port = 5000;
 
 // Set up storage location and filename for multer
 const storage = multer.diskStorage({
@@ -41,7 +41,7 @@ app.post('/upload', upload.single('pdfFile'), (req, res) => {
   //Run Question Generation
   const { spawn } = require('child_process');
 
-  const pythonProcess = spawn('python3', ['C:/Hacked_Jan6/Metamorphosis/QustionGeneration.py']);
+  const pythonProcess = spawn('python3', ['C:/Hacked_Jan6/Metamorphosis/demogpt.py']);
 
   pythonProcess.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
@@ -102,18 +102,25 @@ app.post('/submit-form', (req, res) => {
     exec('cd .. && del temp_audio4.wav')
     exec('cd .. && del temp_audio5.wav')
     exec('cd .. && del temp_audio6.wav')
-    //exec('cd .. && del transcribed_text1.txt')
-    //exec('cd .. && del transcribed_text2.txt')
-    //exec('cd .. && del transcribed_text3.txt')
-    //exec('cd .. && del transcribed_text4.txt')
-    //exec('cd .. && del transcribed_text5.txt')
-    //exec('cd .. && del transcribed_text6.txt')
-    //exec('cd ./public/ && del average.json')
+    exec('cd .. && del transcribed_text1.txt')
+    exec('cd .. && del transcribed_text2.txt')
+    exec('cd .. && del transcribed_text3.txt')
+    exec('cd .. && del transcribed_text4.txt')
+    exec('cd .. && del transcribed_text5.txt')
+    exec('cd .. && del transcribed_text6.txt')
+    exec('cd .. && del done.txt')
+    exec('cd ./public/ && del FinalData.json')
+    exec('cd .. && del CurrResume.pdf')
+    exec('cd .. && del output.txt')
+    exec('del FinalData.txt')
     const jobtitle = req.body.jobtitle;
     const description = req.body.description;
 
+    const cleanJobTitle = jobtitle.replace(/[\r\n]+$/, '');
+    const cleanDescription = description.replace(/[\r\n]+$/, '');
+
     // Create a string to save to the .txt file
-    const content = `Job_Title = \'${jobtitle}\'\nJob_Description = \'${description}\'`;
+    const content = `Job_Title = \'${cleanJobTitle}\'\nJob_Description = \'${cleanDescription}\'`;
 
     // Write to a .txt file
     fs.writeFile('C:/Hacked_Jan6/Metamorphosis/DetailsAndRole.py', content, (err) => {
@@ -228,23 +235,6 @@ app.post('/run-python-script6', (req, res) => {
   });
 });
 
-app.post('/run-demogpt', (req, res) => {
-  const pythonProcess = spawn('python3', ['C:/Hacked_Jan6/Metamorphosis/demogpt.py']);
-
-  pythonProcess.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-  });
-
-  pythonProcess.stderr.on('data', (data) => {
-      console.error(`stderr: ${data}`);
-  });
-
-  pythonProcess.on('close', (code) => {
-      console.log(`Python script exited with code ${code}`);
-      res.json({ message: 'Python script executed successfully' });
-  });
-});
-
 app.post('/run-1st', (req, res) => {
   const pythonProcess = spawn('python3', ['C:/Hacked_Jan6/Metamorphosis/1st.py']);
 
@@ -264,23 +254,6 @@ app.post('/run-1st', (req, res) => {
 
 app.post('/run-2nd', (req, res) => {
   const pythonProcess = spawn('python3', ['C:/Hacked_Jan6/Metamorphosis/2nd.py']);
-
-  pythonProcess.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-  });
-
-  pythonProcess.stderr.on('data', (data) => {
-      console.error(`stderr: ${data}`);
-  });
-
-  pythonProcess.on('close', (code) => {
-      console.log(`Python script exited with code ${code}`);
-      res.json({ message: 'Python script executed successfully' });
-  });
-});
-
-app.post('/run-3rd', (req, res) => {
-  const pythonProcess = spawn('python3', ['C:/Hacked_Jan6/Metamorphosis/3rd.py']);
 
   pythonProcess.stdout.on('data', (data) => {
       console.log(`stdout: ${data}`);
@@ -360,29 +333,28 @@ app.post('/run-6th', (req, res) => {
 
   pythonProcess.on('close', (code) => {
       console.log(`Python script exited with code ${code}`);
-      res.json({ message: 'Python script executed successfully' });
-  });
+      // Do not send a response here
+      checkFileExists('C:/Hacked_Jan6/Metamorphosis/done.txt');
+    });
+
+  function checkFileExists(filePath) {
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+        if (err) {
+            console.log('File not found. Waiting...');
+            setTimeout(() => checkFileExists(filePath), 1000);
+        } else {
+            console.log('File found.');
+            const { exec } = require('child_process');
+            exec('copy FinalData.txt C:\\Hacked_Jan6\\Metamorphosis\\my-express-app\\public\\FinalData.json')
+            res.json({ redirect: '/results-and-counter1.html' }); // Send JSON response with redirect URL
+        }
+    });
+  }
+
 });
 
 app.use(express.static('public')); // Serve static files
 
-app.post('/check-file', (req, res) => {
-    const filePath = 'C:/Hacked_Jan6/Metamorphosis/my-express-app/public/output.html';
-
-    function checkFileExists(filePath) {
-        fs.access(filePath, fs.constants.F_OK, (err) => {
-            if (err) {
-                console.log('File not found. Waiting...');
-                setTimeout(() => checkFileExists(filePath), 1000); // Check again after a delay
-            } else {
-                console.log('File found. Redirecting...');
-                res.json({ redirect: '/resume.html' });
-            }
-        });
-    }
-
-    checkFileExists(filePath);
-});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
