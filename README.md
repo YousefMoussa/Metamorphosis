@@ -25,7 +25,7 @@ Interview.io offers a unique, AI-based solution to prepare for job interviews. O
    - In the project directory, start your Node.js server (`node app.js`).
 
 3. **Open the Web Interface**:
-   - Launch a web browser and go to `http://localhost:3000`.
+   - Launch a web browser and go to `http://localhost:5000`.
 
 4. **Interact with the Application**:
    - On the webpage, upload your resume, enter job details, and conduct a mock interview.
