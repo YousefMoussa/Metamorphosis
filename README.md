@@ -52,9 +52,6 @@ We welcome contributions to make Interview.io better!
 - **Push** to the branch.
 - Submit a **pull request**.
 
-## Support 💬
-
-Got questions? Reach out to us at [support@interview.io](mailto:support@interview.io).
 
 ## License 📄
 
